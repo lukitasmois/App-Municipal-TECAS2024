@@ -11,8 +11,8 @@ const esquemaNegocio = Joi.object({
 
     //TODO: 
     //Guardar la ubicacion de los archivos del titulo de propiedad y del plano
-    titulo:Joi.string().required(),
-    plano:Joi.string().required(),
+    //titulo:Joi.string().required(),
+    //plano:Joi.string().required(),
 
     //TODO: 
     //Capturar el id del usario desde el token

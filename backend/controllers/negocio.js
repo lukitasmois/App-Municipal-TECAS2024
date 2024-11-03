@@ -8,7 +8,8 @@ const crearNegocio = async (req, res) =>{
         ciudad, 
         altura, 
         rubro, 
-        titulo, 
+        titulo,
+        plano, 
         idUsuario} = req.body
 
         const negocio = new Negocio({
@@ -16,7 +17,8 @@ const crearNegocio = async (req, res) =>{
             ciudad, 
             altura, 
             rubro, 
-            titulo, 
+            titulo,
+            plano, 
             idUsuario
         })
 

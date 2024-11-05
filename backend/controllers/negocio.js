@@ -1,5 +1,6 @@
 const Negocio = require("../models/negocio")
 const guardarArchivo = require("../datos/archivos")
+const { agregarNegocio } = require("./usuario")
 
 
 
@@ -29,9 +30,12 @@ const crearNegocio = async (req, res) =>{
 
         try {
             await negocio.save()
+            await agregarNegocio(id,negocio._id)
             res.json({mensaje: "Neogico creado"})
         } catch (error) {
-            res.status(500).json({ mensaje: `Error al crear el negocio`});
+          console.log(res);
+          
+          res.status(500).json({ mensaje: `Error al crear el negocio`});
         }
 }
 

@@ -32,7 +32,9 @@ function CrearNegocioForm({usuarioLogeado}) {
         formData.append("archivos", datos.plano[0]);
         try {
             const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/negocios/crearNegocio`, formData)
-            if(response.status(200)){
+            console.log(response);
+            
+            if(response.status == 200){
                 toast.success("Se creó el negocio con éxito.");
                 setTimeout(() => {
                     navigate('/');

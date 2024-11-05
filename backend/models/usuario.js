@@ -9,6 +9,7 @@ const UsuarioSchema = new mongoose.Schema({
   imagen: { type: String },
   rol: { type: String },
   googleId: { type: String },
+  idNegocio : { type: Array}
 });
 
 module.exports = mongoose.model("Usuario", UsuarioSchema);

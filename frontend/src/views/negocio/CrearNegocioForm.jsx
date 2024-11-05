@@ -31,11 +31,13 @@ function CrearNegocioForm({usuarioLogeado}) {
         formData.append("archivos", datos.titulo[0]);
         formData.append("archivos", datos.plano[0]);
         try {
-            const response = await axios.post('http://localhost:3000/api/negocios/crearNegocio', formData)
-            toast.success("Se creó el negocio con éxito.");
-        setTimeout(() => {
-            navigate('/');
-        }, 2000);
+            const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/negocios/crearNegocio`, formData)
+            if(response.status(200)){
+                toast.success("Se creó el negocio con éxito.");
+                setTimeout(() => {
+                    navigate('/');
+                }, 1000);
+            }
         } catch (error) {
             toast.error("Error al crear el negocio.")
             console.error('error al enviar los datos: ', error);

@@ -53,7 +53,14 @@ const editarUsuario = async (req, res) => {
 
   res.json({ mensaje: "Usuario editado correctamente", usuario });
 };
-
+const modificarUsuarioHabilitado = async (req, res) => {
+  const {id} = req.params;
+  const { habilitado } = req.body;
+  const usuario = await Usuario.findByIdAndUpdate(
+    id,
+    { habilitado },
+    { new: true });
+};
 module.exports = {
   autenticarUsuario,
   cerrarSesion,
@@ -61,4 +68,5 @@ module.exports = {
   editarUsuario,
   verUsuarios,
   verUsuario,
+  modificarUsuarioHabilitado,
 };

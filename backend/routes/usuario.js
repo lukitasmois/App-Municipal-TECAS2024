@@ -11,7 +11,7 @@ const {
   verUsuarios,
   verUsuario,
 } = require("../controllers/usuario.js");
-
+const { authMiddleware, authIsHabilited } = require('../middlewares/auth_middleware.js');
 router.get(
   "/google",
   passport.authenticate("google", { scope: ["email", "profile"] })
@@ -29,7 +29,7 @@ router.get("/", catchAsync(verUsuarios));
 
 router.get("/cerrar-sesion", catchAsync(cerrarSesion));
 
-router.get("/usuario-logeado", catchAsync(verUsuarioLogeado));
+router.get("/usuario-logeado", authMiddleware, authIsHabilited, catchAsync(verUsuarioLogeado));
 
 router.put("/editar/:id", catchAsync(editarUsuario));
 

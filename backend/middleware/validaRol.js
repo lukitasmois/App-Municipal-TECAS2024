@@ -1,3 +1,6 @@
+
+//middleware Obtiene del body de la consulta el roll del usuario,si coincide, siguen la consulta,caso contrario tirar error 401 no autorizado
+
 function Habilitacion(req, res, next) {
     const { rol } = req.body;
     console.log(rol);

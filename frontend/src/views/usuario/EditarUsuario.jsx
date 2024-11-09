@@ -9,6 +9,9 @@ function EditarUsuario( { usuarioLogeado } ) {
         cuil: "",
         telefono: "",
         email: "",
+        constanciaAFIP: "",
+        frenteDNI: "",
+        dorsoDNI: "",
     });
 
     const navigate = useNavigate();
@@ -16,9 +19,10 @@ function EditarUsuario( { usuarioLogeado } ) {
 
     function manejoCambios(evento) {
         const campoACambiar = evento.target.name;
-        const datoNuevo = evento.target.value;
+        const datoNuevo = evento.target.files ? evento.target.files[0] : evento.target.value;
         setUsuario({ ...usuario, [campoACambiar]: datoNuevo });
     }
+    
 
     async function cargarUsuario() {
         const respuesta = await fetch(
@@ -39,33 +43,46 @@ function EditarUsuario( { usuarioLogeado } ) {
     async function enviarSolicitud(evento) {
         evento.preventDefault();
         console.log(usuario);
+        
+        const formData = new FormData();
+    
+        // Agregar datos del formulario (texto)
+        formData.append("nombre", usuario.nombre);
+        formData.append("apellido", usuario.apellido);
+        formData.append("cuil", usuario.cuil);
+        formData.append("telefono", usuario.telefono);
+        formData.append("email", usuario.email);
+    
+        // Agregar los archivos
+        if (usuario.frenteDNI) formData.append("frenteDNI", usuario.frenteDNI);
+        if (usuario.dorsoDNI) formData.append("dorsoDNI", usuario.dorsoDNI);
+        if (usuario.constanciaAFIP) formData.append("constanciaAFIP", usuario.constanciaAFIP);
+    
+        // Realizar la solicitud PUT
         fetch(`${import.meta.env.VITE_API_URL}/api/usuarios/editar/${id}`, {
-                method: "PUT",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: "include",
-                body: JSON.stringify(
-                    {
-                        nombre: usuario.nombre,
-                        apellido: usuario.apellido,
-                        cuil: usuario.cuil,
-                        telefono: usuario.telefono,
-                        email: usuario.email,
-                    }
-                ),
-            }
-        ).then((respuesta) => respuesta.json()).then((res) => {
+            method: "PUT",
+            headers: {
+                // No pongas Content-Type aquí, ya que el navegador lo establecerá automáticamente cuando se use FormData
+            },
+            credentials: "include",
+            body: formData,
+        })
+        .then((respuesta) => respuesta.json())
+        .then((res) => {
             navigate("/");
         })
+        .catch((error) => {
+            console.error("Error al enviar los datos:", error);
+        });
     }
+    
 
     function mostrarFormulario() {
         return (
             <center>
                 <h1>Formulario para solicitar la habilitación de la cuenta</h1>
 
-                <form onSubmit={enviarSolicitud}>
+                <form action="/profile" method="POST" encType="multipart/form-data" onSubmit={enviarSolicitud}>
                     <label>Nombre:</label>
                     <br/>
                     <input 
@@ -116,6 +133,18 @@ function EditarUsuario( { usuarioLogeado } ) {
                         value={usuario.email}
                     />
                     <br/>
+                    <label>Subir frente de DNI</label>
+                    <br/>
+                    <input type="file" name="frenteDNI" onChange={manejoCambios}/>
+                    <br/>
+                    <label>Subir dorso de DNI</label>
+                    <br/>
+                    <input type="file" name="dorsoDNI" onChange={manejoCambios}/>
+                    <br/>
+                    <label>Subir constancia de inscripción de AFIP</label>
+                    <input type="file" name="constanciaAFIP" onChange={manejoCambios}/>
+                    <br/>
+
 
                 <button type="submit">Enviar</button>
                 </form>

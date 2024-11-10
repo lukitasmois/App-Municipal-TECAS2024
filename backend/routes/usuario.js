@@ -13,6 +13,7 @@ const {
   verUsuarios,
   verUsuario,
 } = require("../controllers/usuario.js");
+const { validarEditarUsuario } = require("../validaciones/validarEditarUsuario.js");
 
 const multer = require("multer");
 
@@ -23,7 +24,7 @@ const storage = multer.diskStorage({
     const dir = path.join(__dirname, "../usuarios/", dni);
 
     if(!fs.existsSync(dir)){
-      console.log("hola");
+      //console.log("hola");
       fs.mkdirSync(dir, { recursive: true });
     }
     cb(null, dir);
@@ -64,7 +65,7 @@ router.get("/usuario-logeado", catchAsync(verUsuarioLogeado));
 router.put("/editar/:id", subidaMultiple,(req, res, next) => {
   console.log(req.files);  // Para ver los archivos que se están subiendo
   next();
-} ,catchAsync(editarUsuario));
+}, validarEditarUsuario, catchAsync(editarUsuario));
 
 router.get("/:id" ,catchAsync(verUsuario));
 

@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-function EditarUsuario( { usuarioLogeado } ) {
-    
+function EditarUsuario() {
+
     const [usuario, setUsuario] = useState({
         nombre: "",
         apellido: "",
@@ -39,11 +39,9 @@ function EditarUsuario( { usuarioLogeado } ) {
     useEffect(() => {
         cargarUsuario();
     }, []);
-
     async function enviarSolicitud(evento) {
         evento.preventDefault();
         console.log(usuario);
-        
         const formData = new FormData();
     
         // Agregar datos del formulario (texto)
@@ -61,8 +59,7 @@ function EditarUsuario( { usuarioLogeado } ) {
         // Realizar la solicitud PUT
         fetch(`${import.meta.env.VITE_API_URL}/api/usuarios/editar/${id}`, {
             method: "PUT",
-            headers: {
-                // No pongas Content-Type aquí, ya que el navegador lo establecerá automáticamente cuando se use FormData
+            headers: {           
             },
             credentials: "include",
             body: formData,

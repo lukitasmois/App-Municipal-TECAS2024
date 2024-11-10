@@ -43,7 +43,7 @@ const verUsuarioLogeado = async (req, res) => {
 };
 
 const editarUsuario = async (req, res) => {
-  console.log(req.body.frenteDNI);
+  //console.log(req.body.frenteDNI);
   const { id } = req.params;
   const { email, nombre, apellido, rol, cuil, telefono, imagen } = req.body;
 

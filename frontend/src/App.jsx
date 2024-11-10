@@ -7,12 +7,12 @@ import EditarUsuario from "./views/usuario/EditarUsuario.jsx";
 import { useAuth } from "./useAuth.jsx";
 
 function App() {
-  const { usuarioLogeado } = useAuth();
+  const { usuarioLogeado, setUsuarioLogeado, fetchUsuarioLogeado } = useAuth();
   return (
     <>
       <Routes>
         <Route path="/" element={<Inicio usuarioLogeado={usuarioLogeado} />} />
-        <Route path="/editar-usuario/:id" element={<EditarUsuario usuarioLogeado={usuarioLogeado} />}/>
+        <Route path="/editar-usuario/:id" element={<EditarUsuario />}/>
       </Routes>
     </>
   );

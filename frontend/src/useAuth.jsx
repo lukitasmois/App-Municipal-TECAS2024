@@ -27,6 +27,7 @@ const useAuth = () => {
     usuarioLogeado,
     setUsuarioLogeado,
     cargando,
+    fetchUsuarioLogeado,
   };
 };
 

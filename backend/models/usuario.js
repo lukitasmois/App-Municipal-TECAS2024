@@ -9,7 +9,6 @@ const UsuarioSchema = new mongoose.Schema({
   imagen: { type: String },
   rol: { type: String },
   googleId: { type: String },
-  habilitado: { type: Boolean },
 });
 
 module.exports = mongoose.model("Usuario", UsuarioSchema);

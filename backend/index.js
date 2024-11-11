@@ -1,4 +1,3 @@
-require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
@@ -7,6 +6,9 @@ const session = require("express-session");
 const passport = require("passport");
 const { Strategy: GoogleStrategy } = require("passport-google-oauth20");
 const Usuario = require("./models/usuario.js");
+require("dotenv").config();
+
+app.use(express.json());
 
 //DB
 mongoose.connect("mongodb://127.0.0.1:27017/habilitaciones-municipalidad");
@@ -61,7 +63,9 @@ passport.use(
 
       if (usuario) {
         console.log("Usuario encontrado en la base de datos");
+
         // console.log(usuario);
+
         return done(null, usuario);
       } else {
         const nuevoUsuario = new Usuario({
@@ -70,7 +74,6 @@ passport.use(
           email: profile.emails[0].value,
           imagen: profile.photos[0].value,
           googleId: profile.id,
-          habilitado: false,
         });
         await nuevoUsuario.save();
         done(null, nuevoUsuario);

@@ -66,3 +66,13 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+label{
+  display: block 
+}
+
+span{
+  display: block;
+  color: tomato;
+  font-size: x-small;
+}

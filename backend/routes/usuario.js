@@ -4,6 +4,7 @@ const passport = require("passport");
 const fs = require("fs");
 const path = require("path");
 const Usuario = require("../models/usuario.js");
+const { Habilitacion,Catastro,Planeamiento,Bomberos,ObrasPrivadas,IngresosPublicos,Admin} = require("../middleware/validaRol.js") 
 const { catchAsync } = require("../utils.js");
 const {
   autenticarUsuario,
@@ -13,6 +14,8 @@ const {
   verUsuarios,
   verUsuario,
 } = require("../controllers/usuario.js");
+const { validarEditarUsuario } = require("../validaciones/validarEditarUsuario.js");
+const { authMiddleware, authIsHabilited } = require('../middlewares/auth_middleware.js');
 
 const multer = require("multer");
 
@@ -23,7 +26,6 @@ const storage = multer.diskStorage({
     const dir = path.join(__dirname, "../usuarios/", dni);
 
     if(!fs.existsSync(dir)){
-      console.log("hola");
       fs.mkdirSync(dir, { recursive: true });
     }
     cb(null, dir);
@@ -67,5 +69,12 @@ router.put("/editar/:id", subidaMultiple,(req, res, next) => {
 } ,catchAsync(editarUsuario));
 
 router.get("/:id" ,catchAsync(verUsuario));
+}, validarEditarUsuario, catchAsync(editarUsuario));
+
+router.get("/:id" ,catchAsync(verUsuario));
+
+router.post("/habilitaciones",Habilitacion,(req,res)=>{
+  res.status(200).json("Habilitaciones")
+});
 
 module.exports = router;

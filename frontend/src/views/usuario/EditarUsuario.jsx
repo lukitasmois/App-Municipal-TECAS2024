@@ -39,9 +39,11 @@ function EditarUsuario() {
     useEffect(() => {
         cargarUsuario();
     }, []);
+
     async function enviarSolicitud(evento) {
         evento.preventDefault();
         console.log(usuario);
+        
         const formData = new FormData();
     
         // Agregar datos del formulario (texto)

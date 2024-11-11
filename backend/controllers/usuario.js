@@ -43,7 +43,6 @@ const verUsuarioLogeado = async (req, res) => {
 };
 
 const editarUsuario = async (req, res) => {
-  //console.log(req.body.frenteDNI);
   const { id } = req.params;
   const { email, nombre, apellido, rol, cuil, telefono, imagen } = req.body;
 
@@ -55,7 +54,6 @@ const editarUsuario = async (req, res) => {
 
   res.json({ mensaje: "Usuario editado correctamente", usuario });
 };
-
 
 const agregarNegocio = async (id, idNegocio) =>{
 

@@ -26,7 +26,6 @@ const storage = multer.diskStorage({
     const dir = path.join(__dirname, "../usuarios/", dni);
 
     if(!fs.existsSync(dir)){
-      //console.log("hola");
       fs.mkdirSync(dir, { recursive: true });
     }
     cb(null, dir);
@@ -62,15 +61,17 @@ router.get("/", catchAsync(verUsuarios));
 
 router.get("/cerrar-sesion", catchAsync(cerrarSesion));
 
-router.get("/usuario-logeado", authMiddleware, authIsHabilited, catchAsync(verUsuarioLogeado));
+router.get("/usuario-logeado", catchAsync(verUsuarioLogeado));
 
 router.put("/editar/:id", subidaMultiple,(req, res, next) => {
   console.log(req.files);  // Para ver los archivos que se están subiendo
   next();
+} ,catchAsync(editarUsuario));
+
+router.get("/:id" ,catchAsync(verUsuario));
 }, validarEditarUsuario, catchAsync(editarUsuario));
 
 router.get("/:id" ,catchAsync(verUsuario));
-
 
 router.post("/habilitaciones",Habilitacion,(req,res)=>{
   res.status(200).json("Habilitaciones")

@@ -14,15 +14,6 @@ function App() {
   return (
     <>
       <Routes>
-      <Route
-        path="/hola"
-        element={
-          <ProtectedRoute isAuthenticated={usuarioLogeado}>
-            <Inicio usuarioLogeado={usuarioLogeado} />
-          </ProtectedRoute>
-        }
-      />
-      
         <Route path="/" element={<Inicio usuarioLogeado={usuarioLogeado} />} />
 
         <Route path="/editar-usuario/:id" element={<EditarUsuario />}/>

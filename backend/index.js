@@ -8,10 +8,9 @@ const passport = require("passport");
 const { Strategy: GoogleStrategy } = require("passport-google-oauth20");
 const Usuario = require("./models/usuario.js");
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 //DB
 mongoose.connect("mongodb://127.0.0.1:27017/habilitaciones-municipalidad");

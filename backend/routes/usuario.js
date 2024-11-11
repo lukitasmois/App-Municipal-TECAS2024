@@ -4,6 +4,7 @@ const passport = require("passport");
 const fs = require("fs");
 const path = require("path");
 const Usuario = require("../models/usuario.js");
+const { Habilitacion,Catastro,Planeamiento,Bomberos,ObrasPrivadas,IngresosPublicos,Admin} = require("../middleware/validaRol.js") 
 const { catchAsync } = require("../utils.js");
 const {
   autenticarUsuario,
@@ -69,5 +70,10 @@ router.put("/editar/:id", subidaMultiple,(req, res, next) => {
 }, validarEditarUsuario, catchAsync(editarUsuario));
 
 router.get("/:id" ,catchAsync(verUsuario));
+
+
+router.post("/habilitaciones",Habilitacion,(req,res)=>{
+  res.status(200).json("Habilitaciones")
+});
 
 module.exports = router;

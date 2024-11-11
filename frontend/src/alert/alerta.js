@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2';
 //recibe propiedades de titulo del error,mesnaje devuelto por la peticion y el icono a usar
 export const alerta = (props)=>{
-    if (props.error) {
+
         Swal.fire({
             title: props.titulo,
             text: props.message,
@@ -9,5 +9,5 @@ export const alerta = (props)=>{
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Aceptar',
         });
-    }
+
 }

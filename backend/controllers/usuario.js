@@ -53,6 +53,19 @@ const editarUsuario = async (req, res) => {
 
   res.json({ mensaje: "Usuario editado correctamente", usuario });
 };
+
+
+const agregarNegocio = async (id, idNegocio) =>{
+
+  const usuario = await Usuario.updateOne(
+    {_id: id},
+    {$push: {idNegocio: idNegocio}},
+    {new: true}
+  )
+  return usuario
+}
+
+
 const modificarUsuarioHabilitado = async (req, res) => {
   const {id} = req.params;
   const { habilitado } = req.body;
@@ -61,6 +74,7 @@ const modificarUsuarioHabilitado = async (req, res) => {
     { habilitado },
     { new: true });
 };
+
 module.exports = {
   autenticarUsuario,
   cerrarSesion,
@@ -68,5 +82,6 @@ module.exports = {
   editarUsuario,
   verUsuarios,
   verUsuario,
+  agregarNegocio,
   modificarUsuarioHabilitado,
 };

@@ -2,8 +2,7 @@
 //middleware Obtiene del body de la consulta el roll del usuario,si coincide, siguen la consulta,caso contrario tirar error 401 no autorizado
 
 function Habilitacion(req, res, next) {
-    const { rol } = req.body;
-    console.log(rol);
+    const rol  = req.user.rol;
     if (rol === 'HABILITACION') {
        next()
     } else {
@@ -11,7 +10,7 @@ function Habilitacion(req, res, next) {
  }
  }
  function Catastro(req, res, next) {
-    const { rol } = req.body;
+    const  rol  = req.user.rol;
     if (rol === 'CATASTRO') {
        next()
     } else {
@@ -19,7 +18,7 @@ function Habilitacion(req, res, next) {
  }
  }
  function Planeamiento(req, res, next) {
-    const { rol } = req.body;
+    const  rol  = req.user.rol;
     if (rol === 'PLANEAMINTO') {
        next()
     } else {
@@ -27,7 +26,7 @@ function Habilitacion(req, res, next) {
     }  
  }
  function Bomberos(req, res, next) {
-    const { rol } = req.body;
+    const  rol  = req.user.rol;
     if (rol === 'PLANEAMINTO') {
        next()
     } else {
@@ -35,7 +34,7 @@ function Habilitacion(req, res, next) {
     }  
  }
  function ObrasPrivadas(req, res, next) {
-    const { rol } = req.body;
+    const  rol  = req.user.rol;
     if (rol === 'OBRAS_PRIVADAS') {
        next()
     } else {
@@ -44,7 +43,7 @@ function Habilitacion(req, res, next) {
  }
  
  function IngresosPublicos(req, res, next) {
-    const { rol } = req.body;
+    const  rol  = req.user.rol;
     if (rol === 'Ingresos Publicos' ) {
        next()
     } else {
@@ -53,7 +52,7 @@ function Habilitacion(req, res, next) {
  }
  
  function Admin(req, res, next) {
-    const { rol } = req.body;
+    const  rol  = req.user.rol;
     if (rol === 'ADMIN') {
        next()
     } else {

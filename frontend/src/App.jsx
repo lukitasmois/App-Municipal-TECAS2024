@@ -5,11 +5,22 @@ import { useAuth } from "./useAuth.jsx";
 import CrearNegocioScreen from "./views/negocio/CrearNegocioScreen.jsx";
 import { ToastContainer } from "react-toastify";
 
+import  ProtectedRoute  from "./components/InicioProtegido.jsx";
 function App() {
   const { usuarioLogeado } = useAuth();
+  console.log("hola")
   return (
     <>
       <Routes>
+      <Route
+        path="/hola"
+        element={
+          <ProtectedRoute isAuthenticated={usuarioLogeado}>
+            <Inicio usuarioLogeado={usuarioLogeado} />
+          </ProtectedRoute>
+        }
+      />
+      
         <Route path="/" element={<Inicio usuarioLogeado={usuarioLogeado} />} />
         <Route path="/crearNegocio" element={<CrearNegocioScreen usuarioLogeado={usuarioLogeado}/>}/>
       </Routes>

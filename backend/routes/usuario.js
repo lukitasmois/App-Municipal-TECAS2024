@@ -14,6 +14,7 @@ const {
   verUsuario,
 } = require("../controllers/usuario.js");
 const { validarEditarUsuario } = require("../validaciones/validarEditarUsuario.js");
+const { authMiddleware, authIsHabilited } = require('../middlewares/auth_middleware.js');
 
 const multer = require("multer");
 
@@ -60,7 +61,7 @@ router.get("/", catchAsync(verUsuarios));
 
 router.get("/cerrar-sesion", catchAsync(cerrarSesion));
 
-router.get("/usuario-logeado", catchAsync(verUsuarioLogeado));
+router.get("/usuario-logeado", authMiddleware, authIsHabilited, catchAsync(verUsuarioLogeado));
 
 router.put("/editar/:id", subidaMultiple,(req, res, next) => {
   console.log(req.files);  // Para ver los archivos que se están subiendo

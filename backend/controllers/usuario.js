@@ -1,5 +1,6 @@
 const Usuario = require("../models/usuario");
 
+
 const verUsuarios = async (req, res) => {
   const usuarios = await Usuario.find();
   res.json(usuarios);
@@ -42,6 +43,7 @@ const verUsuarioLogeado = async (req, res) => {
 };
 
 const editarUsuario = async (req, res) => {
+  //console.log(req.body.frenteDNI);
   const { id } = req.params;
   const { email, nombre, apellido, rol, cuil, telefono, imagen } = req.body;
 
@@ -54,6 +56,27 @@ const editarUsuario = async (req, res) => {
   res.json({ mensaje: "Usuario editado correctamente", usuario });
 };
 
+
+const agregarNegocio = async (id, idNegocio) =>{
+
+  const usuario = await Usuario.updateOne(
+    {_id: id},
+    {$push: {idNegocio: idNegocio}},
+    {new: true}
+  )
+  return usuario
+}
+
+
+const modificarUsuarioHabilitado = async (req, res) => {
+  const {id} = req.params;
+  const { habilitado } = req.body;
+  const usuario = await Usuario.findByIdAndUpdate(
+    id,
+    { habilitado },
+    { new: true });
+};
+
 module.exports = {
   autenticarUsuario,
   cerrarSesion,
@@ -61,4 +84,6 @@ module.exports = {
   editarUsuario,
   verUsuarios,
   verUsuario,
+  agregarNegocio,
+  modificarUsuarioHabilitado,
 };

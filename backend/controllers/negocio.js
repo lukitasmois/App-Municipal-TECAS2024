@@ -63,15 +63,59 @@ function guardarArchivos(archivos, id) {
   return rutasArchivos;
 }
 
-const VerNegocio = async (req, res) => {
+const verNegocios = async (req, res) => {
+  try {
+    const negocios = await Negocio.find();
+
+    if (!negocios) {
+      return res.status(404).json({ mensaje: "Negocios no encontrados" });
+    }
+
+    res.json(negocios);
+  } catch (error) {
+    console.log(`Error en el controlador VerNegocios: ${error}`);
+    res.status(500).json({ mensaje: "Error al obtener los negocios" });
+  }
+};
+
+// const verNegocio = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const negocio = await Negocio.findById(id);
+
+//     if (!negocio) {
+//       return res.status(404).json({ mensaje: "Negocio no encontrado" });
+//     }
+
+//     res.json(negocio);
+//   } catch (error) {
+//     console.log(`Error en el controlador VerNegocio: ${error}`);
+//     res.status(500).json({ mensaje: "Error al obtener el negocio" });
+//   }
+// };
+
+const verNegocio = async (req, res) => {
   try {
     const { id } = req.params;
     const negocio = await Negocio.findById(id);
-    res.json(negocio);
+
+    if (!negocio) {
+      return res.status(404).json({ mensaje: "Negocio no encontrado" });
+    }
+
+    const baseUrl = `${req.protocol}://${req.get("host")}`;
+
+    const negocioConUrls = {
+      ...negocio.toObject(),
+      titulo: `${baseUrl}/${negocio.titulo.replace(/\\/g, "/")}`,
+      plano: `${baseUrl}/${negocio.plano.replace(/\\/g, "/")}`,
+    };
+
+    res.json(negocioConUrls);
   } catch (error) {
     console.log(`Error en el controlador VerNegocio: ${error}`);
     res.status(500).json({ mensaje: "Error al obtener el negocio" });
   }
 };
 
-module.exports = { crearNegocio, VerNegocio };
+module.exports = { crearNegocio, verNegocio, verNegocios };

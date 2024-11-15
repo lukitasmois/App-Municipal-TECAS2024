@@ -7,20 +7,22 @@ function Inicio({ usuarioLogeado }) {
       <h1>Bienvenido!</h1>
       {usuarioLogeado.logeado ? (
         <div>
-        <p>
-          Bienvenido: {usuarioLogeado.usuario.nombre}{" "}
-          {usuarioLogeado.usuario.apellido}!
-        </p>
-        <p>
-          ID: {usuarioLogeado.usuario._id}
-        </p>
-        <Link to="/crearNegocio" className="nav-link">Crear Negocio</Link>
+          <p>
+            Bienvenido: {usuarioLogeado.usuario.nombre}{" "}
+            {usuarioLogeado.usuario.apellido}!
+          </p>
+          <p>ID: {usuarioLogeado.usuario._id}</p>
+          <Link to="/crearNegocio" className="nav-link">
+            Crear Negocio
+          </Link>
         </div>
-
       ) : (
-        <p>
-          Inicia sesion para ingresar a la aplicacion <br /> <IniciarSesion />
-        </p>
+        <div>
+          <p>
+            Inicia sesion para ingresar a la aplicacion <br />
+          </p>
+          <IniciarSesion />
+        </div>
       )}
     </>
   );

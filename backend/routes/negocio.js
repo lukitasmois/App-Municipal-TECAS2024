@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const validarNegocio = require("../validaciones/validarNegocio");
 const { catchAsync } = require("../utils");
-const crearNegocio = require("../controllers/negocio")
+const {crearNegocio, obteberPlano} = require("../controllers/negocio")
 
 //configuracion para multer (guardar archivos)
 const multer = require('multer')
@@ -17,5 +17,8 @@ router.post("/crearNegocio",
     subirArchivo.array('archivos', 2),
     validarNegocio
     ,catchAsync(crearNegocio))
+
+
+router.get("/plano/:id", catchAsync(obteberPlano))
 
 module.exports = router

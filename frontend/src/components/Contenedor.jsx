@@ -6,7 +6,7 @@ function Contenedor({ children }) {
         padding: "1rem",
         marginBottom: "1rem",
         borderRadius: "5px",
-        boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+        boxShadow: "0 0 10px rgba(0, 0, 0, 0.2)",
       }}
     >
       {children}

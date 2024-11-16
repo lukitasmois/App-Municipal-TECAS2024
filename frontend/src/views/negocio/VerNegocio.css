@@ -1,0 +1,21 @@
+.ancho-contenedor-PDF {
+  width: 68%;
+}
+
+@media screen and (max-width: 1280px) {
+  .ancho-contenedor-PDF {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .ancho-contenedor-PDF {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ancho-contenedor-PDF {
+    width: 100%;
+  }
+}

@@ -7,6 +7,7 @@ import CrearNegocioScreen from "./views/negocio/CrearNegocioScreen.jsx";
 import { ToastContainer } from "react-toastify";
 
 import  ProtectedRoute  from "./components/InicioProtegido.jsx";
+import { VerPlanos } from "./views/administracion/verPlanos.jsx";
 function App() {
 
   const { usuarioLogeado, setUsuarioLogeado, fetchUsuarioLogeado } = useAuth();
@@ -18,6 +19,8 @@ function App() {
 
         <Route path="/editar-usuario/:id" element={<EditarUsuario />}/>
         <Route path="/crearNegocio" element={<CrearNegocioScreen usuarioLogeado={usuarioLogeado}/>}/>
+
+        <Route path="/administracion/verPlanos" element={<VerPlanos />}/>
       </Routes>
       <ToastContainer/>
     </>

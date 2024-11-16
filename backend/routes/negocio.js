@@ -2,11 +2,11 @@ const express = require("express");
 const router = express.Router();
 const validarNegocio = require("../validaciones/validarNegocio");
 const { catchAsync } = require("../utils");
-const {crearNegocio, obteberPlano} = require("../controllers/negocio")
+const {crearNegocio, obteberPlano, getNegocios} = require("../controllers/negocio")
 
 //configuracion para multer (guardar archivos)
 const multer = require('multer')
-const subirArchivo = multer({dest: 'archivos/'}) 
+const uploadFile = multer({ storage: multer.memoryStorage() })
 
 //Ruta para crear el negocio
 // Middleware para subir múltiples archivos (máximo 2) con el campo 'archivos'
@@ -14,11 +14,13 @@ const subirArchivo = multer({dest: 'archivos/'})
 /*Middleware para manejar errores, si no hay ningun error
 se carga el negocio con todos los */
 router.post("/crearNegocio", 
-    subirArchivo.array('archivos', 2),
+    uploadFile.array('archivos', 2),
     validarNegocio
     ,catchAsync(crearNegocio))
 
 
-router.get("/plano/:id", catchAsync(obteberPlano))
+router.get("/plano/:idUsuario/:idPlano", catchAsync(obteberPlano));
+
+router.get("/", catchAsync(getNegocios))
 
 module.exports = router

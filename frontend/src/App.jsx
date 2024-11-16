@@ -5,8 +5,8 @@ import EditarUsuario from "./views/usuario/EditarUsuario.jsx";
 import { useAuth } from "./useAuth.jsx";
 import CrearNegocioScreen from "./views/negocio/CrearNegocioScreen.jsx";
 import { ToastContainer } from "react-toastify";
-
-import  ProtectedRoute  from "./components/InicioProtegido.jsx";
+import BusinessModal from "./components/BotonNegocios.jsx";
+import ListaNegocios from "./components/ListaNegocios.jsx";
 function App() {
 
   const { usuarioLogeado, setUsuarioLogeado, fetchUsuarioLogeado } = useAuth();
@@ -19,6 +19,12 @@ function App() {
         <Route path="/editar-usuario/:id" element={<EditarUsuario />}/>
         <Route path="/crearNegocio" element={<CrearNegocioScreen usuarioLogeado={usuarioLogeado}/>}/>
       </Routes>
+      {showModal && (
+        <BusinessModal
+          businesses={businesses}
+          onCreate={handleCreateBusiness}
+        />
+      )}
       <ToastContainer/>
     </>
   );

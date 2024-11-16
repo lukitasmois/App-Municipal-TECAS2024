@@ -1,6 +1,8 @@
 const Negocio = require("../models/negocio")
 const guardarArchivo = require("../datos/archivos")
 const { agregarNegocio } = require("./usuario")
+const negocio = require("../models/negocio")
+const { error, message } = require("../esquemas/esquemaNegocio")
 
 
 
@@ -69,6 +71,18 @@ function guardarArchivos(archivos, id) {
 
       return rutasArchivos;
 }
+//retorna los negocios asociados a un usuario en especifico.
+async function negociosPorUsuario(req, res){
+  const usuarioID = req.params
+  if (!usuarioID){
+    return res.status(404).json({message: "no se pudo obtener el usuario"});
+  }
+  try{let negocios = await negocio.find({"idUsuario": usuarioID})
+  res.json(negocios)}
+  catch{
+    console.error("Error al obtener los negocios:", err);
+    res.status(500).json({ message: "Error al obtener los negocios." });
+  }
+}
 
-
-module.exports = crearNegocio
+module.exports = {crearNegocio, negociosPorUsuario}

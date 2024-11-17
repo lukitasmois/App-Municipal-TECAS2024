@@ -30,7 +30,7 @@ function BarraNavegacion({usuarioLogeado})
                         <NavLink className="nav-link" to="/Preguntas-frecuentes">Preguntas frecuentes</NavLink>
                     </li>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/">Cerrar sesion</NavLink>
+                        <NavLink className="nav-link" to="/cerrar-sesion">Cerrar sesion</NavLink>
                     </li>
                 </>
             )

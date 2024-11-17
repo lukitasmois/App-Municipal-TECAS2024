@@ -9,6 +9,7 @@ import VerNegocio from "./views/negocio/VerNegocio.jsx";
 import { ToastContainer } from "react-toastify";
 import ProtectedRoute  from "./components/InicioProtegido.jsx";
 import BarraNavegacion from "./components/BarraNavegacion.jsx";
+import CerrarSesion from "./views/usuario/CerrarSesion.jsx";
 
 import { Toaster } from "react-hot-toast";
 function App() {
@@ -19,7 +20,7 @@ function App() {
       <BarraNavegacion usuarioLogeado={usuarioLogeado}></BarraNavegacion>
       <Routes>
         <Route path="/" element={<Inicio usuarioLogeado={usuarioLogeado} />} />
-
+        <Route path="/cerrar-sesion" element={<CerrarSesion setUsuarioLogeado={setUsuarioLogeado} />}></Route>
         <Route path="/editar-usuario/:id" element={<EditarUsuario />} />
         <Route
           path="/crearNegocio"

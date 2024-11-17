@@ -78,22 +78,6 @@ const verNegocios = async (req, res) => {
   }
 };
 
-// const verNegocio = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const negocio = await Negocio.findById(id);
-
-//     if (!negocio) {
-//       return res.status(404).json({ mensaje: "Negocio no encontrado" });
-//     }
-
-//     res.json(negocio);
-//   } catch (error) {
-//     console.log(`Error en el controlador VerNegocio: ${error}`);
-//     res.status(500).json({ mensaje: "Error al obtener el negocio" });
-//   }
-// };
-
 const verNegocio = async (req, res) => {
   try {
     const { id } = req.params;

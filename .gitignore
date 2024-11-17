@@ -6,3 +6,5 @@ backend/archivos
 frontend/*.env
 node_modules
 backend/usuarios
+/backend/archivos
+

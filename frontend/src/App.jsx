@@ -5,12 +5,13 @@ import Inicio from "./views/Inicio.jsx";
 import EditarUsuario from "./views/usuario/EditarUsuario.jsx";
 import { useAuth } from "./useAuth.jsx";
 import CrearNegocioScreen from "./views/negocio/CrearNegocioScreen.jsx";
+import VerNegocio from "./views/negocio/VerNegocio.jsx";
 import { ToastContainer } from "react-toastify";
-import  ProtectedRoute  from "./components/InicioProtegido.jsx";
+import ProtectedRoute  from "./components/InicioProtegido.jsx";
 import BarraNavegacion from "./components/BarraNavegacion.jsx";
 
+import { Toaster } from "react-hot-toast";
 function App() {
-
   const { usuarioLogeado, setUsuarioLogeado, fetchUsuarioLogeado } = useAuth();
 
   return (
@@ -19,10 +20,15 @@ function App() {
       <Routes>
         <Route path="/" element={<Inicio usuarioLogeado={usuarioLogeado} />} />
 
-        <Route path="/editar-usuario/:id" element={<EditarUsuario />}/>
-        <Route path="/crearNegocio" element={<CrearNegocioScreen usuarioLogeado={usuarioLogeado}/>}/>
+        <Route path="/editar-usuario/:id" element={<EditarUsuario />} />
+        <Route
+          path="/crearNegocio"
+          element={<CrearNegocioScreen usuarioLogeado={usuarioLogeado} />}
+        />
+        <Route path="/vernegocio/:idNegocio" element={<VerNegocio />} />
       </Routes>
-      <ToastContainer/>
+      <ToastContainer />
+      <Toaster />
     </>
   );
 }

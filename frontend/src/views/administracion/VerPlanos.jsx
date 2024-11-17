@@ -1,15 +1,19 @@
-import { useEffect, useState } from "react";
+import { act, useEffect, useState } from "react";
 import { Table } from "../../components/tabla/Table";
 import axios from "axios";
+import { changeStatePlane } from "./planeService";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 
 
 export function VerPlanos(params) {
     const [negocios, setNegocios] = useState([])
+    const [cambios, setCambios] = useState(false)
 
     useEffect(() => {
         fetchNegocios(); 
-      }, []);
+      }, [cambios]);
 
       const fetchNegocios = async () => {
         try {
@@ -28,11 +32,71 @@ export function VerPlanos(params) {
         console.log(negocio);
         
         window.open(`http://localhost:3000/api/negocios/plano/${negocio.idUsuario}/${negocio._id}`)
+      }
+
+      const handleChangeState = async (negocio, newState) =>{
+        console.log("cambio");
+        try {
+          await changeStatePlane(negocio, newState)
+          setCambios((prev) => !prev);
+          if(newState){
+            toast.success("Plano aprobado!");
+          }else{
+            toast.success("Plano Rechazado")
+          }
+        } catch (error) {
+          console.log(error.message);
+        }
+        
+      }
+
+    const actions = (negocio) =>{
+      return getActionsByState(
+        negocio,
+        handleViewPlane,
+      )
     }
 
-    const acciones = [
-        { nombre: "Ver Plano", funcion: (negocio) => handleViewPlane(negocio) }
-      ];
+    const getActionsByState = (
+      negocio,
+      handleViewPlane,
+    ) =>{
+      const viewPlane ={
+        name: "Ver Plano",
+        funcion: handleViewPlane
+      }
+      let actions = [viewPlane]
+
+      switch (negocio.planosAprobado) {
+        case false:
+          actions =[
+            ...actions,
+            {
+              name: "Aceptar Plano",
+              funcion: () => handleChangeState(negocio, true)
+            },
+          ];
+          break;
+          case true:
+            actions = [
+              ...actions,
+              {
+                name: "Rechazar Plano",
+                funcion: ()=> handleChangeState(negocio, false)
+              }
+            ];
+            break;
+        default:
+          break;
+      }
+
+      return actions
+    }
+
+    // const acciones = [
+    //     { name: "Ver Plano", funcion: (negocio) => handleViewPlane(negocio) },
+    //     {name: "Aprobar", funcion: (negocio) => handle}
+    //   ];
 
     return(
         <>
@@ -43,7 +107,6 @@ export function VerPlanos(params) {
         "Altura",
         "Nombre",
         "Apellido",
-        "DNI",
         "Email"
         ]}
         data = {
@@ -54,10 +117,9 @@ export function VerPlanos(params) {
             "altura",
             "usuario.nombre",
             "usuario.apellido",
-            "usuario.cuil",
             "usuario.email"
         ]}
-        actions = {acciones}
+        actions = {actions}
         />
         </>
     )

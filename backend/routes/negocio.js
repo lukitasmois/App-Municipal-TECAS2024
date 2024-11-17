@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const validarNegocio = require("../validaciones/validarNegocio");
 const { catchAsync } = require("../utils");
-const {crearNegocio, obteberPlano, getNegocios} = require("../controllers/negocio")
+const {crearNegocio, obteberPlano, getNegocios, changeStateBusiness} = require("../controllers/negocio")
 
 //configuracion para multer (guardar archivos)
 const multer = require('multer')
@@ -22,5 +22,7 @@ router.post("/crearNegocio",
 router.get("/plano/:idUsuario/:idPlano", catchAsync(obteberPlano));
 
 router.get("/", catchAsync(getNegocios))
+
+router.put("/editarEstado/:id", catchAsync(changeStateBusiness))
 
 module.exports = router

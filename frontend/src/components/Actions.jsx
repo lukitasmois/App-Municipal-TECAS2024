@@ -33,7 +33,7 @@ export function Actions(props){
                             closeDropdown();
                         }}
                         >
-                        {accion.nombre}
+                        {accion.name}
                         </a>
                     </li>
                     ))}

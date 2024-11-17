@@ -125,10 +125,24 @@ const getNegocios = async (req, res) =>{
     res.json(negocios)
   } catch (error) {
     console.log(error.message);
-    
   }
+}
 
+const changeStateBusiness = async (req, res) =>{
+  try {
+    const { id }= req.params
+    const newState = req.body.newState
+    const response = await Negocio.findByIdAndUpdate(
+      id,
+      {planosAprobado: newState },
+      {new: true}
+    )
+
+    res.status(200).send(response)
+  } catch (error) {
+    console.log(error.message);
+  }
 }
 
 
-module.exports = {crearNegocio, obteberPlano, getNegocios}
+module.exports = {crearNegocio, obteberPlano, getNegocios, changeStateBusiness}

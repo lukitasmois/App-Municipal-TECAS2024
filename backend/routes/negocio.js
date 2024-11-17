@@ -5,7 +5,9 @@ const { catchAsync } = require("../utils");
 const {crearNegocio, obteberPlano, getNegocios, changeStateBusiness} = require("../controllers/negocio")
 
 //configuracion para multer (guardar archivos)
-const multer = require('multer')
+const multer = require('multer');
+const { validarNoContribuyente } = require("../middleware/validarRolEmpleado");
+const { authMiddleware } = require("../middlewares/auth_middleware");
 const uploadFile = multer({ storage: multer.memoryStorage() })
 
 //Ruta para crear el negocio
@@ -19,10 +21,10 @@ router.post("/crearNegocio",
     ,catchAsync(crearNegocio))
 
 
-router.get("/plano/:idUsuario/:idPlano", catchAsync(obteberPlano));
+router.get("/plano/:idUsuario/:idPlano", authMiddleware , validarNoContribuyente ,catchAsync(obteberPlano));
 
 router.get("/", catchAsync(getNegocios))
 
-router.put("/editarEstado/:id", catchAsync(changeStateBusiness))
+router.put("/editarEstado/:id",authMiddleware , validarNoContribuyente, catchAsync(changeStateBusiness))
 
 module.exports = router

@@ -1,5 +1,7 @@
 import axios from "axios";
 
+axios.defaults.withCredentials = true;
+
 export const changeStatePlane = async (business, newState) =>{
     const validStates = [true, false]
 

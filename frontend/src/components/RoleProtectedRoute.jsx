@@ -1,10 +1,19 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
+import { useAuth } from '../useAuth';
 
 
-const RoleProtectedRoute = ({ isAuthenticated, user, allowedRoles, redirectPath = "/", nextView}) => {
+function RoleProtectedRoute({allowedRoles, redirectPath = "/", nextView}){
+  const { usuarioLogeado, cargando} = useAuth();
+
+  if (cargando) {
+    return ""
+  }
+
+  console.log("Ruta protegida: " ,usuarioLogeado);
   
-    if (!isAuthenticated || !allowedRoles.includes(userRole)) {
+  
+    if (!usuarioLogeado.logeado || !allowedRoles.includes(usuarioLogeado.usuario.rol)) {
       return <Navigate to={redirectPath} />;
     }
     return nextView;

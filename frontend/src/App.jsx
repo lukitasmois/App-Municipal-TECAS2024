@@ -8,10 +8,11 @@ import { ToastContainer } from "react-toastify";
 
 import  ProtectedRoute  from "./components/InicioProtegido.jsx";
 import { VerPlanos } from "./views/administracion/verPlanos.jsx";
+import RoleProtectedRoute from "./components/RoleProtectedRoute.jsx";
 function App() {
 
   const { usuarioLogeado, setUsuarioLogeado, fetchUsuarioLogeado } = useAuth();
-
+  
   return (
     <>
       <Routes>
@@ -20,7 +21,7 @@ function App() {
         <Route path="/editar-usuario/:id" element={<EditarUsuario />}/>
         <Route path="/crearNegocio" element={<CrearNegocioScreen usuarioLogeado={usuarioLogeado}/>}/>
 
-        <Route path="/administracion/verPlanos" element={<VerPlanos />}/>
+        <Route path="/administracion/ver-planos" element={<RoleProtectedRoute allowedRoles={["EMPLEADO"]} nextView={<VerPlanos/>}/>}/>
       </Routes>
       <ToastContainer/>
     </>

@@ -2,9 +2,19 @@
   width: 68%;
 }
 
+.contenedor-form {
+  width: 40%;
+  margin: 0 auto;
+  text-align: center;
+}
+
 @media screen and (max-width: 1280px) {
   .ancho-contenedor-PDF {
     width: 80%;
+  }
+
+  .contenedor-form {
+    width: 50%;
   }
 }
 
@@ -12,10 +22,18 @@
   .ancho-contenedor-PDF {
     width: 90%;
   }
+
+  .contenedor-form {
+    width: 60%;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .ancho-contenedor-PDF {
     width: 100%;
+  }
+
+  .contenedor-form {
+    width: 90%;
   }
 }

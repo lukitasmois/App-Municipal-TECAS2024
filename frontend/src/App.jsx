@@ -6,6 +6,7 @@ import { useAuth } from "./useAuth.jsx";
 import CrearNegocioScreen from "./views/negocio/CrearNegocioScreen.jsx";
 import VerNegocio from "./views/negocio/VerNegocio.jsx";
 import { ToastContainer } from "react-toastify";
+import { Toaster } from "react-hot-toast";
 
 import ProtectedRoute from "./components/InicioProtegido.jsx";
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path="/vernegocio/:idNegocio" element={<VerNegocio />} />
       </Routes>
       <ToastContainer />
+      <Toaster />
     </>
   );
 }

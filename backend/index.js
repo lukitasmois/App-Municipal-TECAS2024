@@ -104,9 +104,12 @@ const archivosDir = path.join(__dirname, "archivos");
 app.use("/archivos", express.static(archivosDir));
 
 const usuariosRouter = require("./routes/usuario.js");
-const negociosRouter = require("./routes/negocio.js");
+const negociosRouter = require("./routes/negocio.js")
+const habilitacionRouter = require("./routes/habilitacion.js")
 app.use("/api/usuarios", usuariosRouter);
 app.use("/api/negocios", negociosRouter);
+app.use("/api/habilitaciones", habilitacionRouter);
+
 //Rutas
 
 app.listen(puerto, () => {

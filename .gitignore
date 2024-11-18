@@ -6,3 +6,6 @@ frontend/*.env
 node_modules
 backend/usuarios
 backend/archivos
+package-lock.json
+backend/package-lock.json
+frontend/package-lock.json

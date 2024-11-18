@@ -10,6 +10,7 @@ import { ToastContainer } from "react-toastify";
 import GetBussinesesData from "./components/DatosDeNegocio.jsx";
 import ProtectedRoute  from "./components/InicioProtegido.jsx";
 import BarraNavegacion from "./components/BarraNavegacion.jsx";
+import VistaHabilitaciones from "./views/habilitaciones/VistaHabilitaciones.jsx";
 import CerrarSesion from "./views/usuario/CerrarSesion.jsx";
 import { Toaster } from "react-hot-toast";
 import { VerPlanos } from "./views/administracion/verPlanos.jsx";
@@ -26,6 +27,7 @@ function App() {
         <Route path="/cerrar-sesion" element={<CerrarSesion />}></Route>
         <Route path="/editar-usuario/:id" element={<EditarUsuario />} />
         <Route path="/crearNegocio" element={<CrearNegocioScreen />} />
+        <Route path="/habilitaciones" element={<VistaHabilitaciones />}/>
         <Route path="/vernegocio/:idNegocio" element={<VerNegocio />} />
       </Routes>
       <ToastContainer />

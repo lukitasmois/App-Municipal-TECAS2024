@@ -10,10 +10,11 @@ const NegocioSchema = new Schema({
     rubro: {type: String, required: true},
     titulo: {type: String, required: true},
     plano: {type: String, required: true},
-
     planosAprobado: { type: Boolean, default: false }, 
     negocioAprobado: { type: Boolean, default: false }, 
     idHabilitaciones: { type: [String], default: [] }
 })
+
+
 
 module.exports = mongoose.model("Negocio", NegocioSchema);

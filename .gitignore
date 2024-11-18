@@ -2,9 +2,7 @@ backend/node_modules
 frontend/node_modules
 *.env
 backend/*.env
-backend/archivos
 frontend/*.env
 node_modules
 backend/usuarios
-/backend/archivos
-
+backend/archivos

@@ -4,7 +4,7 @@ const { ref, object } = require("joi");
 
 const ROL = "ROL";
 
-const ROL_DEFAULT = "CONTRIBUYENTE"
+const ROL_DEFAULT = "CONTRIBUYENTE";
 
 const UsuarioSchema = new mongoose.Schema({
   email: { type: String },

@@ -1,10 +1,10 @@
-const habilitacion = require("../models/habilitacion");
 const negocio = require("../controllers/negocio")
+const Habilitacion = require("../models/habilitacion");
 //metodo que permite crear una habilitación
 const crearHabilitacion = async (req, res) => {
     let idNegocio = req.body.idNegocio
     console.log(idNegocio)
-    const nuevaHabilitacion = new habilitacion({
+    const nuevaHabilitacion = new Habilitacion({
         IdNegocio: idNegocio,
         estado: "iniciado",
     })
@@ -20,4 +20,20 @@ const crearHabilitacion = async (req, res) => {
      }
 }
 
-module.exports = { crearHabilitacion };
+const verHabilitaciones = async (req, res) => {
+  const habilitaciones = await Habilitacion.find();
+  res.json(habilitaciones);
+};
+
+const verHabilitacion = async (req, res) => {
+  const { legajo } = req.params;
+  const habilitacion = await Habilitacion.find({ NroLegajo : legajo});
+  res.json(habilitacion);
+};
+
+
+module.exports = {
+  verHabilitaciones,
+  verHabilitacion,
+  crearHabilitacion
+};

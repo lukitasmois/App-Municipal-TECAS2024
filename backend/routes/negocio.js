@@ -4,10 +4,10 @@ const validarNegocio = require("../validaciones/validarNegocio");
 const { catchAsync } = require("../utils");
 
 //configuracion para multer (guardar archivos)
-const multer = require('multer');
+const multer = require("multer");
 const { validarNoContribuyente } = require("../middleware/validarRolEmpleado");
 
-const uploadFile = multer({ storage: multer.memoryStorage() })
+const uploadFile = multer({ storage: multer.memoryStorage() });
 const {
   authMiddleware,
   authIsHabilited,
@@ -17,16 +17,13 @@ const {
   verNegocio,
   verNegocios,
   negociosPorUsuario,
-  obteberPlano, 
-  getNegocios, 
-  changeStateBusiness
+  obtenerPlano,
+  getNegocios,
+  changeStateBusiness,
 } = require("../controllers/negocio");
 
 //configuracion para multer (guardar archivos)
-const multer = require("multer");
 const subirArchivo = multer({ dest: "archivos/" });
-const { validarNoContribuyente } = require("../middleware/validarRolEmpleado");
-const uploadFile = multer({ storage: multer.memoryStorage() })
 
 //Ruta para crear el negocio
 // Middleware para subir múltiples archivos (máximo 2) con el campo 'archivos'
@@ -38,18 +35,27 @@ router.get("/nuevaHabilitacion/:id", negociosPorUsuario);
 //Ruta para obtener un negocio mediante el id de usuario solo si este esta logeado y habilitado.
 router.post(
   "/crearNegocio",
-  uploadFile.array('archivos', 2),
+  uploadFile.array("archivos", 2),
   validarNegocio,
   catchAsync(crearNegocio)
 );
 
-router.get("/plano/:idUsuario/:idPlano", authMiddleware , validarNoContribuyente ,catchAsync(obteberPlano));
+router.get(
+  "/plano/:idUsuario/:idPlano",
+  authMiddleware,
+  validarNoContribuyente,
+  catchAsync(obtenerPlano)
+);
 
 router.get("/", verNegocios);
 
-router.put("/editarEstado/:id",authMiddleware , validarNoContribuyente, catchAsync(changeStateBusiness))
+router.put(
+  "/editarEstado/:id",
+  authMiddleware,
+  validarNoContribuyente,
+  catchAsync(changeStateBusiness)
+);
 
 router.get("/:id", verNegocio);
 
 module.exports = router;
-

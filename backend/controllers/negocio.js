@@ -1,19 +1,8 @@
-const path = require('path');
-const fs = require('fs');
-const Negocio = require("../models/negocio")
+const path = require("path");
+const fs = require("fs");
+const Negocio = require("../models/negocio");
 const { agregarNegocio } = require("./usuario");
-const { default: mongoose } = require('mongoose');
-const guardarArchivo = require("../datos/archivos");
-
-
-//Función para crear un nuevo negocio.
-const crearNegocio = async (req, res) => {
-  const id = req.body.idUsuario;
-  const rutasArchivos = guardarArchivos(req.files, id);
-  const { calle, ciudad, altura, rubro, idUsuario } = req.body;
-
-  const titulo = rutasArchivos.titulo;
-  const plano = rutasArchivos.plano;
+const { default: mongoose } = require("mongoose");
 
 //Función para crear un nuevo negocio.
 const crearNegocio = async (req, res) => {
@@ -33,7 +22,7 @@ const crearNegocio = async (req, res) => {
     rubro,
     titulo: rutasArchivos.titulo,
     plano: rutasArchivos.plano,
-    idUsuario
+    idUsuario,
   });
 
   try {
@@ -41,7 +30,9 @@ const crearNegocio = async (req, res) => {
     await agregarNegocio(idUsuario, negocio._id);
     res.json({ mensaje: "Negocio creado" });
   } catch (error) {
-    res.status(500).json({ mensaje: `Error al crear el negocio: ${error.message}` });
+    res
+      .status(500)
+      .json({ mensaje: `Error al crear el negocio: ${error.message}` });
   }
 };
 
@@ -60,8 +51,8 @@ function guardarArchivos(archivos, idUsuario, idNegocio) {
 
   // Objeto para almacenar las rutas de los archivos
   const rutasArchivos = {
-    titulo: '',
-    plano: ''
+    titulo: "",
+    plano: "",
   };
 
   // Iterar sobre cada archivo y guardar su ruta
@@ -86,7 +77,7 @@ function guardarArchivos(archivos, idUsuario, idNegocio) {
 
 /**
  * Función para guardar un archivo en una ruta específica.
- * 
+ *
  * @param {Object} archivo - Archivo a guardar.
  * @param {string} idUsuario - ID del usuario para crear la carpeta correspondiente.
  * @param {string} idNegocio - ID del negocio para crear la subcarpeta correspondiente.
@@ -94,7 +85,14 @@ function guardarArchivos(archivos, idUsuario, idNegocio) {
  * @returns {string} - Ruta del archivo guardado.
  */
 function guardarArchivo(archivo, idUsuario, idNegocio, nuevoNombre) {
-  const directorioUsuario = path.join(__dirname, '../archivos', idUsuario.toString());
+  const directorioUsuario = path.join(
+    __dirname,
+    "../archivos",
+    idUsuario.toString()
+  );
+
+  // const rutaRespuesta = path.join("./archivos", idUsuario.toString());
+
   const directorioNegocio = path.join(directorioUsuario, idNegocio.toString());
 
   if (!fs.existsSync(directorioUsuario)) {
@@ -110,11 +108,17 @@ function guardarArchivo(archivo, idUsuario, idNegocio, nuevoNombre) {
   return rutaArchivo;
 }
 
-const obteberPlano = async (req, res) => {
+const obtenerPlano = async (req, res) => {
   try {
     const idUsuario = req.params.idUsuario;
     const idPlano = req.params.idPlano;
-    const rutaDelArchivo = path.join(__dirname, "..", "archivos", idUsuario, idPlano, `plano_${idPlano}.pdf`);
+    const rutaDelArchivo = path.join(
+      __dirname,
+      "../archivos",
+      idUsuario,
+      idPlano,
+      `plano_${idPlano}.pdf`
+    );
 
     res.sendFile(rutaDelArchivo, (err) => {
       if (err) {
@@ -127,30 +131,30 @@ const obteberPlano = async (req, res) => {
   }
 };
 
-const getNegocios = async (req, res) =>{
+const getNegocios = async (req, res) => {
   try {
-    const negocios = await Negocio.find()
-    res.json(negocios)
+    const negocios = await Negocio.find();
+    res.json(negocios);
   } catch (error) {
     console.log(error.message);
   }
-}
+};
 
-const changeStateBusiness = async (req, res) =>{
+const changeStateBusiness = async (req, res) => {
   try {
-    const { id }= req.params
-    const newState = req.body.newState
+    const { id } = req.params;
+    const newState = req.body.newState;
     const response = await Negocio.findByIdAndUpdate(
       id,
-      {planosAprobado: newState },
-      {new: true}
-    )
+      { planosAprobado: newState },
+      { new: true }
+    );
 
-    res.status(200).send(response)
+    res.status(200).send(response);
   } catch (error) {
     console.log(error.message);
   }
-}
+};
 
 //retorna los negocios asociados a un usuario en especifico.
 const negociosPorUsuario = async (req, res) => {
@@ -225,6 +229,7 @@ module.exports = {
   verNegocios,
   negociosPorUsuario,
   agregarHabilitacion,
-  getNegocios, 
-  changeStateBusiness
+  getNegocios,
+  changeStateBusiness,
+  obtenerPlano,
 };

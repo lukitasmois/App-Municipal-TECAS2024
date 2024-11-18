@@ -7,9 +7,9 @@ const passport = require("passport");
 const { Strategy: GoogleStrategy } = require("passport-google-oauth20");
 const Usuario = require("./models/usuario.js");
 require("dotenv").config();
+const path = require("path");
 
 app.use(express.json());
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -98,10 +98,18 @@ passport.deserializeUser((user, done) => {
 //passport
 
 //Rutas
+
+app.use("static", express.static(path.join(__dirname, "public")));
+const archivosDir = path.join(__dirname, "archivos");
+app.use("/archivos", express.static(archivosDir));
+
 const usuariosRouter = require("./routes/usuario.js");
 const negociosRouter = require("./routes/negocio.js")
+const habilitacionRouter = require("./routes/habilitacion.js")
 app.use("/api/usuarios", usuariosRouter);
-app.use("/api/negocios", negociosRouter)
+app.use("/api/negocios", negociosRouter);
+app.use("/api/habilitaciones", habilitacionRouter);
+
 //Rutas
 
 app.listen(puerto, () => {

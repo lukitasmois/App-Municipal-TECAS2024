@@ -3,8 +3,17 @@ const fs = require('fs');
 const Negocio = require("../models/negocio")
 const { agregarNegocio } = require("./usuario");
 const { default: mongoose } = require('mongoose');
+const guardarArchivo = require("../datos/archivos");
 
 
+//Función para crear un nuevo negocio.
+const crearNegocio = async (req, res) => {
+  const id = req.body.idUsuario;
+  const rutasArchivos = guardarArchivos(req.files, id);
+  const { calle, ciudad, altura, rubro, idUsuario } = req.body;
+
+  const titulo = rutasArchivos.titulo;
+  const plano = rutasArchivos.plano;
 
 //Función para crear un nuevo negocio.
 const crearNegocio = async (req, res) => {
@@ -30,7 +39,6 @@ const crearNegocio = async (req, res) => {
   try {
     await negocio.save();
     await agregarNegocio(idUsuario, negocio._id);
-
     res.json({ mensaje: "Negocio creado" });
   } catch (error) {
     res.status(500).json({ mensaje: `Error al crear el negocio: ${error.message}` });
@@ -39,7 +47,7 @@ const crearNegocio = async (req, res) => {
 
 /**
  * Función para guardar múltiples archivos y devolver sus rutas.
- * 
+ *
  * @param {Array} archivos - Lista de archivos a guardar.
  * @param {string} idUsuario - ID del usuario para crear la carpeta correspondiente.
  * @param {string} idNegocio - ID del negocio para crear la subcarpeta correspondiente.
@@ -144,5 +152,79 @@ const changeStateBusiness = async (req, res) =>{
   }
 }
 
+//retorna los negocios asociados a un usuario en especifico.
+const negociosPorUsuario = async (req, res) => {
+  const { id } = req.params;
+  // Validamos que el ID exista
+  if (!id) {
+    console.log("No se encontró el ID: " + id);
+    return res.status(404).json({ message: "No se pudo obtener el usuario" });
+  }
+  try {
+    // Consultamos los negocios relacionados con el usuario
+    let negocios = await Negocio.find({ idUsuario: id });
+    // Respondemos con los negocios encontrados
+    res.json(negocios);
+  } catch (err) {
+    console.error("Error al obtener los negocios:", err);
+    res.status(500).json({ message: "Error al obtener los negocios." });
+  }
+};
 
-module.exports = {crearNegocio, obteberPlano, getNegocios, changeStateBusiness}
+const agregarHabilitacion = async (id, id_habilitacion) => {
+  const usuario = await Negocio.updateOne(
+    { _id: id },
+    { $push: { idHabilitaciones: id_habilitacion } },
+    { new: true }
+  );
+  return usuario;
+};
+
+const verNegocios = async (req, res) => {
+  try {
+    const negocios = await Negocio.find();
+
+    if (!negocios) {
+      return res.status(404).json({ mensaje: "Negocios no encontrados" });
+    }
+
+    res.json(negocios);
+  } catch (error) {
+    console.log(`Error en el controlador VerNegocios: ${error}`);
+    res.status(500).json({ mensaje: "Error al obtener los negocios" });
+  }
+};
+
+const verNegocio = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const negocio = await Negocio.findById(id);
+
+    if (!negocio) {
+      return res.status(404).json({ mensaje: "Negocio no encontrado" });
+    }
+
+    const baseUrl = `${req.protocol}://${req.get("host")}`;
+
+    const negocioConUrls = {
+      ...negocio.toObject(),
+      titulo: `${baseUrl}/${negocio.titulo.replace(/\\/g, "/")}`,
+      plano: `${baseUrl}/${negocio.plano.replace(/\\/g, "/")}`,
+    };
+
+    res.json(negocioConUrls);
+  } catch (error) {
+    console.log(`Error en el controlador VerNegocio: ${error}`);
+    res.status(500).json({ mensaje: "Error al obtener el negocio" });
+  }
+};
+
+module.exports = {
+  crearNegocio,
+  verNegocio,
+  verNegocios,
+  negociosPorUsuario,
+  agregarHabilitacion,
+  getNegocios, 
+  changeStateBusiness
+};

@@ -1,4 +1,8 @@
 const mongoose = require("mongoose");
+const { type } = require("../esquemas/esquemaEditarUsuario");
+const { ref, object } = require("joi");
+
+const ROL = "ROL";
 
 const ROL_DEFAULT = "CONTRIBUYENTE"
 
@@ -11,7 +15,7 @@ const UsuarioSchema = new mongoose.Schema({
   imagen: { type: String },
   rol: { type: String, default: ROL_DEFAULT },
   googleId: { type: String },
-  idNegocio : { type: Array},
+  idNegocio: [{ type: mongoose.Schema.Types.ObjectId, ref: "Negocio" }],
   habilitado: { type: Boolean },
 });
 

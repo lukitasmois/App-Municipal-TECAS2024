@@ -2,12 +2,30 @@ const express = require("express");
 const router = express.Router();
 const validarNegocio = require("../validaciones/validarNegocio");
 const { catchAsync } = require("../utils");
-const {crearNegocio, obteberPlano, getNegocios, changeStateBusiness} = require("../controllers/negocio")
 
 //configuracion para multer (guardar archivos)
 const multer = require('multer');
 const { validarNoContribuyente } = require("../middleware/validarRolEmpleado");
-const { authMiddleware } = require("../middlewares/auth_middleware");
+
+const uploadFile = multer({ storage: multer.memoryStorage() })
+const {
+  authMiddleware,
+  authIsHabilited,
+} = require("../middlewares/auth_middleware");
+const {
+  crearNegocio,
+  verNegocio,
+  verNegocios,
+  negociosPorUsuario,
+  obteberPlano, 
+  getNegocios, 
+  changeStateBusiness
+} = require("../controllers/negocio");
+
+//configuracion para multer (guardar archivos)
+const multer = require("multer");
+const subirArchivo = multer({ dest: "archivos/" });
+const { validarNoContribuyente } = require("../middleware/validarRolEmpleado");
 const uploadFile = multer({ storage: multer.memoryStorage() })
 
 //Ruta para crear el negocio
@@ -15,16 +33,23 @@ const uploadFile = multer({ storage: multer.memoryStorage() })
 // Middleware para validar los datos del negocio en el cuerpo de la solicitud
 /*Middleware para manejar errores, si no hay ningun error
 se carga el negocio con todos los */
-router.post("/crearNegocio", 
-    uploadFile.array('archivos', 2),
-    validarNegocio
-    ,catchAsync(crearNegocio))
 
+router.get("/nuevaHabilitacion/:id", negociosPorUsuario);
+//Ruta para obtener un negocio mediante el id de usuario solo si este esta logeado y habilitado.
+router.post(
+  "/crearNegocio",
+  uploadFile.array('archivos', 2),
+  validarNegocio,
+  catchAsync(crearNegocio)
+);
 
 router.get("/plano/:idUsuario/:idPlano", authMiddleware , validarNoContribuyente ,catchAsync(obteberPlano));
 
-router.get("/", catchAsync(getNegocios))
+router.get("/", verNegocios);
 
 router.put("/editarEstado/:id",authMiddleware , validarNoContribuyente, catchAsync(changeStateBusiness))
 
-module.exports = router
+router.get("/:id", verNegocio);
+
+module.exports = router;
+

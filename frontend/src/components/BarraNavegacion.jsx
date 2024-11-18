@@ -1,26 +1,12 @@
 import { NavLink } from "react-router-dom";
 import { useAuthContext } from "../context/AuthContext";
+import "./BarraNavegacion.css";
+import logoMunicipalidad from "../assets/logo-municipio.png";
 
 function BarraNavegacion() 
 {
 
     const { usuarioLogeado } = useAuthContext();
-
-    function navegacionDeslogeado()
-    {
-        if (!usuarioLogeado.logeado){
-            return (
-            <>
-                <li className="nav-item">
-                    <NavLink className="nav-link" to="/">Inicio</NavLink>
-                </li>
-                <li className="nav-item">
-                    <NavLink className="nav-link" to="/Preguntas-frecuentes">Preguntas frecuentes</NavLink>
-                </li>
-            </>
-            )
-        }
-    }
 
     function navegacionLogeado()
     {
@@ -28,10 +14,7 @@ function BarraNavegacion()
             return (
                 <>
                     <li className="nav-item">
-                        <NavLink className="nav-link" to="/">Inicio</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/Preguntas-frecuentes">Preguntas frecuentes</NavLink>
+                        <NavLink className="nav-link" to="/" >Hola {usuarioLogeado.usuario.nombre}!</NavLink>
                     </li>
                     <li className="nav-item">
                         <NavLink className="nav-link" to="/cerrar-sesion">Cerrar sesion</NavLink>
@@ -42,19 +25,24 @@ function BarraNavegacion()
     }
 
     return (
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
-            <div className="container-fluid">
-                <a className="navbar-brand" href="#">Navbar</a>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+            <div class="container-fluid">
+            <img src={logoMunicipalidad} style={{ maxWidth: "180px", maxHeight: "48px" }} alt="Logo Municipalidad" />
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                        {navegacionDeslogeado()}
-                    </ul>
-                    <ul className="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
-                        {navegacionLogeado()}
-                    </ul>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li className="nav-item">
+                            <NavLink className="nav-link" to="/">Inicio</NavLink>
+                            </li>
+                            <li className="nav-item">
+                            <NavLink className="nav-link" to="/Preguntas-frecuentes">Preguntas frecuentes</NavLink>
+                            </li>
+                        </ul>
+                        <ul className="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
+                            {navegacionLogeado()}
+                        </ul>
                 </div>
             </div>
         </nav>

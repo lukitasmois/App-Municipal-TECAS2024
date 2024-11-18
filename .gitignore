@@ -4,3 +4,4 @@ frontend/node_modules
 backend/*.env
 frontend/*.env
 node_modules
+backend/archivos

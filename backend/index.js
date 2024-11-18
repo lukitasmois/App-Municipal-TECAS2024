@@ -100,8 +100,10 @@ passport.deserializeUser((user, done) => {
 //Rutas
 const usuariosRouter = require("./routes/usuario.js");
 const negociosRouter = require("./routes/negocio.js")
+const habilitacionRouter = require("./routes/habilitacion.js")
 app.use("/api/usuarios", usuariosRouter);
-app.use("/api/negocios", negociosRouter)
+app.use("/api/negocios", negociosRouter);
+app.use("/api", habilitacionRouter);
 //Rutas
 
 app.listen(puerto, () => {

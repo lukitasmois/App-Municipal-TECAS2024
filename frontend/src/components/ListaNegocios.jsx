@@ -1,20 +1,28 @@
 import React from "react";
-
-const ListaNegocios = ({ business, onEnable }) => {
-  const handleEnable = () => {
-
-    onEnable(business.id);
-  };
-
+import axios from "axios";
+const handleHabilitar = async (id) => {
+  try {
+    const response = await axios.post("http://localhost:3000/api/crear", {
+      idNegocio: id,
+    });
+    console.log("Habilitación creada:", response.data);
+    alert("Habilitación creada exitosamente");
+  } catch (error) {
+    alert("Hubo un error al crear la habilitación" + id);
+  }
+};
+const ListaNegocios = ({ business }) => {
   return (
-    <tr>
-      <td>{business.name}</td>
-      <td>{business.description}</td>
-      <td>{business.location}</td>
-      <td>{business.status}</td>
+    <tr className="datos-negocio">
+      <td>{business._id}</td>
+      <td>{business.calle}</td>
+      <td>{business.ciudad}</td>
+      <td>{business.altura}</td>
+      <td>{business.rubro}</td>
       <td>
-        {/* Botón habilitar */}
-        <button onClick={handleEnable}>Habilitar</button>
+        <button onClick={() => handleHabilitar(business._id)} className="custom-button">
+        Habilitar
+      </button>
       </td>
     </tr>
   );

@@ -5,8 +5,7 @@ import EditarUsuario from "./views/usuario/EditarUsuario.jsx";
 import { useAuth } from "./useAuth.jsx";
 import CrearNegocioScreen from "./views/negocio/CrearNegocioScreen.jsx";
 import { ToastContainer } from "react-toastify";
-import BusinessModal from "./components/BotonNegocios.jsx";
-import ListaNegocios from "./components/ListaNegocios.jsx";
+import GetBussinesesData from "./components/DatosDeNegocio.jsx";
 function App() {
 
   const { usuarioLogeado, setUsuarioLogeado, fetchUsuarioLogeado } = useAuth();
@@ -15,16 +14,11 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Inicio usuarioLogeado={usuarioLogeado} />} />
-
+        <Route path="/ver_negocios/:id" element={<GetBussinesesData />}/>
         <Route path="/editar-usuario/:id" element={<EditarUsuario />}/>
         <Route path="/crearNegocio" element={<CrearNegocioScreen usuarioLogeado={usuarioLogeado}/>}/>
       </Routes>
-      {showModal && (
-        <BusinessModal
-          businesses={businesses}
-          onCreate={handleCreateBusiness}
-        />
-      )}
+      
       <ToastContainer/>
     </>
   );

@@ -72,17 +72,29 @@ function guardarArchivos(archivos, id) {
       return rutasArchivos;
 }
 //retorna los negocios asociados a un usuario en especifico.
-async function negociosPorUsuario(req, res){
-  const usuarioID = req.params
-  if (!usuarioID){
-    return res.status(404).json({message: "no se pudo obtener el usuario"});
+const negociosPorUsuario = async(req, res) => {
+  const { id } = req.params;
+  // Validamos que el ID exista
+  if (!id) {
+    console.log("No se encontró el ID: " + id);
+    return res.status(404).json({ message: "No se pudo obtener el usuario" });
   }
-  try{let negocios = await negocio.find({"idUsuario": usuarioID})
-  res.json(negocios)}
-  catch{
+  try {
+    // Consultamos los negocios relacionados con el usuario
+    let negocios = await negocio.find({ idUsuario: id });
+    // Respondemos con los negocios encontrados
+    res.json(negocios);
+  } catch (err) {
     console.error("Error al obtener los negocios:", err);
     res.status(500).json({ message: "Error al obtener los negocios." });
   }
 }
-
-module.exports = {crearNegocio, negociosPorUsuario}
+const agregarHabilitacion = async(id, id_habilitacion) => {
+  const usuario = await negocio.updateOne(
+    {_id: id},
+    {$push: {idHabilitaciones: id_habilitacion}},
+    {new: true}
+  )
+  return usuario
+}
+module.exports = {crearNegocio, negociosPorUsuario, agregarHabilitacion}

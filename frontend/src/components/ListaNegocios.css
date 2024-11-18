@@ -1,0 +1,33 @@
+
+tr:nth-child(even) {
+    background-color: #D6EEEE;
+  }
+tr {
+    border: 1px solid #ccc;
+}
+
+ th,
+ td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 8px;
+}
+h1{
+    text-align: center;
+    color: #ffffff;
+}
+.custom-container {
+    background-color: #050051; 
+    color: white; 
+    padding: 2px;
+    border-radius: 10px;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+  }
+.custom-button {
+    background-color: green;
+    color: #ffffff;
+}
+.custom-button :hover{
+    background-color: rgb(76, 233, 76);
+}

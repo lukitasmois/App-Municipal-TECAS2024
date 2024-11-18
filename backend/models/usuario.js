@@ -4,6 +4,8 @@ const { ref, object } = require("joi");
 
 const ROL = "ROL";
 
+const ROL_DEFAULT = "CONTRIBUYENTE"
+
 const UsuarioSchema = new mongoose.Schema({
   email: { type: String },
   nombre: { type: String },
@@ -11,7 +13,7 @@ const UsuarioSchema = new mongoose.Schema({
   cuil: { type: String },
   telefono: { type: String },
   imagen: { type: String },
-  rol: { type: String },
+  rol: { type: String, default: ROL_DEFAULT },
   googleId: { type: String },
   idNegocio: [{ type: mongoose.Schema.Types.ObjectId, ref: "Negocio" }],
   habilitado: { type: Boolean },

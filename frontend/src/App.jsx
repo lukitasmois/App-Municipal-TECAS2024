@@ -12,14 +12,17 @@ import ProtectedRoute  from "./components/InicioProtegido.jsx";
 import BarraNavegacion from "./components/BarraNavegacion.jsx";
 import CerrarSesion from "./views/usuario/CerrarSesion.jsx";
 import { Toaster } from "react-hot-toast";
+import { VerPlanos } from "./views/administracion/verPlanos.jsx";
+import RoleProtectedRoute from "./components/RoleProtectedRoute.jsx";
 
 function App() {
   return (
     <>
       <BarraNavegacion></BarraNavegacion>
       <Routes>
-        <Route path="/ver_negocios/:id" element={<GetBussinesesData />}/>
         <Route path="/" element={<Inicio />} />
+        <Route path="/administracion/ver-planos" element={<RoleProtectedRoute allowedRoles={["EMPLEADO"]} nextView={<VerPlanos/>}/>}/>
+        <Route path="/ver_negocios/:id" element={<GetBussinesesData />}/>
         <Route path="/cerrar-sesion" element={<CerrarSesion />}></Route>
         <Route path="/editar-usuario/:id" element={<EditarUsuario />} />
         <Route path="/crearNegocio" element={<CrearNegocioScreen />} />

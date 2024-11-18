@@ -1,8 +1,13 @@
 
 
 const authMiddleware = (req, res, next) => {
+    console.log('Usuario no logeado');
+    console.log("user: ", req.user);
+    console.log("usuario: ", req.usuario);
+    console.log("user aut: ", req.isAuthenticated());
     if(!req.isAuthenticated()){
-        console.log('Usuario no logeado');
+
+        
         return res.status(401).json({ error: "User not authenticated" });
     };
     console.log("usuario logeado:"+ req.params._id)

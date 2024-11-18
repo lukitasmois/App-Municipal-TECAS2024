@@ -1,7 +1,11 @@
 import { NavLink } from "react-router-dom";
+import { useAuthContext } from "../context/AuthContext";
 
-function BarraNavegacion({usuarioLogeado}) 
+function BarraNavegacion() 
 {
+
+    const { usuarioLogeado } = useAuthContext();
+
     function navegacionDeslogeado()
     {
         if (!usuarioLogeado.logeado){

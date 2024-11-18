@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { useAuthContext } from "../../context/AuthContext";
 
 function EditarUsuario() {
   const [usuario, setUsuario] = useState({
@@ -13,6 +14,8 @@ function EditarUsuario() {
     frenteDNI: "",
     dorsoDNI: "",
   });
+
+  const { actualizarUsuarioLogeado } = useAuthContext();
 
   const navigate = useNavigate();
   const { id } = useParams();
@@ -81,6 +84,7 @@ function EditarUsuario() {
       .then((respuesta) => respuesta.json())
       .then((res) => {
         toast.success("Usuario editado correctamente.");
+        actualizarUsuarioLogeado(res.usuario);
         navigate("/");
       })
       .catch((error) => {

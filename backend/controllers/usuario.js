@@ -1,6 +1,5 @@
 const Usuario = require("../models/usuario");
 
-
 const verUsuarios = async (req, res) => {
   const usuarios = await Usuario.find();
   res.json(usuarios);
@@ -8,7 +7,7 @@ const verUsuarios = async (req, res) => {
 
 const verUsuario = async (req, res) => {
   const { id } = req.params;
-  const usuario = await Usuario.findById(id);
+  const usuario = await Usuario.findById(id).populate("idNegocio");
   res.json(usuario);
 };
 
@@ -55,24 +54,23 @@ const editarUsuario = async (req, res) => {
   res.json({ mensaje: "Usuario editado correctamente", usuario });
 };
 
-const agregarNegocio = async (id, idNegocio) =>{
-
+const agregarNegocio = async (id, idNegocio) => {
   const usuario = await Usuario.updateOne(
-    {_id: id},
-    {$push: {idNegocio: idNegocio}},
-    {new: true}
-  )
-  return usuario
-}
-
+    { _id: id },
+    { $push: { idNegocio: idNegocio } },
+    { new: true }
+  );
+  return usuario;
+};
 
 const modificarUsuarioHabilitado = async (req, res) => {
-  const {id} = req.params;
+  const { id } = req.params;
   const { habilitado } = req.body;
   const usuario = await Usuario.findByIdAndUpdate(
     id,
     { habilitado },
-    { new: true });
+    { new: true }
+  );
 };
 
 module.exports = {

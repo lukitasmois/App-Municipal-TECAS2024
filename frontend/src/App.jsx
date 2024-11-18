@@ -1,6 +1,5 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Inicio from "./views/Inicio.jsx";
 import EditarUsuario from "./views/usuario/EditarUsuario.jsx";
 import { useAuthContext } from "./context/AuthContext.jsx";

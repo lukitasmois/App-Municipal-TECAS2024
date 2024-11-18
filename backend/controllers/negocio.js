@@ -1,6 +1,6 @@
-const Negocio = require("../models/negocio")
-const guardarArchivo = require("../datos/archivos")
-const { agregarNegocio } = require("./usuario")
+const Negocio = require("../models/negocio");
+const guardarArchivo = require("../datos/archivos");
+const { agregarNegocio } = require("./usuario");
 
 //Función para crear un nuevo negocio.
 const crearNegocio = async (req, res) => {
@@ -64,7 +64,7 @@ function guardarArchivos(archivos, id) {
 }
 
 //retorna los negocios asociados a un usuario en especifico.
-const negociosPorUsuario = async(req, res) => {
+const negociosPorUsuario = async (req, res) => {
   const { id } = req.params;
   // Validamos que el ID exista
   if (!id) {
@@ -80,16 +80,16 @@ const negociosPorUsuario = async(req, res) => {
     console.error("Error al obtener los negocios:", err);
     res.status(500).json({ message: "Error al obtener los negocios." });
   }
-}
-const agregarHabilitacion = async(id, id_habilitacion) => {
+};
+
+const agregarHabilitacion = async (id, id_habilitacion) => {
   const usuario = await Negocio.updateOne(
-    {_id: id},
-    {$push: {idHabilitaciones: id_habilitacion}},
-    {new: true}
-  )
-  return usuario
-}
-module.exports = {crearNegocio, negociosPorUsuario, agregarHabilitacion}
+    { _id: id },
+    { $push: { idHabilitaciones: id_habilitacion } },
+    { new: true }
+  );
+  return usuario;
+};
 
 const verNegocios = async (req, res) => {
   try {
@@ -130,4 +130,10 @@ const verNegocio = async (req, res) => {
   }
 };
 
-module.exports = { crearNegocio, verNegocio, verNegocios };
+module.exports = {
+  crearNegocio,
+  verNegocio,
+  verNegocios,
+  negociosPorUsuario,
+  agregarHabilitacion,
+};

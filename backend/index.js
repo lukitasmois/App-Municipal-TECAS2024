@@ -112,10 +112,14 @@ app.use("/archivos", express.static(archivosDir));
 const usuariosRouter = require("./routes/usuario.js");
 const negociosRouter = require("./routes/negocio.js");
 const habilitacionesRouter = require("./routes/habilitaciones.js");
+const formulariosRouter = require("./routes/formularios.js");
+const respuestaFormulariosRouter = require("./routes/respuestaformularios.js");
 
 app.use("/api/usuarios", usuariosRouter);
 app.use("/api/negocios", negociosRouter);
 app.use("/api/habilitaciones", habilitacionesRouter);
+app.use("/api/formularios", formulariosRouter);
+app.use("/api/respuestaformularios", respuestaFormulariosRouter);
 
 //Rutas
 

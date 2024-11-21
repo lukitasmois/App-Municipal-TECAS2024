@@ -107,10 +107,12 @@ app.use("/archivos", express.static(archivosDir));
 const usuariosRouter = require("./routes/usuario.js");
 const negociosRouter = require("./routes/negocio.js")
 const habilitacionesRouter = require("./routes/habilitaciones.js")
+const emailsRouter = require("./routes/emails.js")
 
 app.use("/api/usuarios", usuariosRouter);
 app.use("/api/negocios", negociosRouter)
 app.use("/api/habilitaciones", habilitacionesRouter)
+app.use("/api/emails", emailsRouter)
 
 //Rutas
 

@@ -7,7 +7,7 @@ const passport = require("passport");
 const { Strategy: GoogleStrategy } = require("passport-google-oauth20");
 const Usuario = require("./models/usuario.js");
 require("dotenv").config();
-
+const cron = require("node-cron"); 
 const path = require("path");
 
 app.use(express.json());
@@ -115,6 +115,9 @@ app.use("/api/habilitaciones", habilitacionesRouter)
 app.use("/api/emails", emailsRouter)
 
 //Rutas
+//cron jobs
+
+//cron jobs
 
 app.listen(puerto, () => {
   console.log(`Backend API en puerto ${puerto}`);

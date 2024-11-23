@@ -73,6 +73,16 @@ const modificarUsuarioHabilitado = async (req, res) => {
   );
 };
 
+const getClientById = async (id) =>{
+  try {
+    const client = await Usuario.findById(id)
+    return client
+  } catch (error) {
+    console.log(`Error al buscar el cliente por id: ${error}`);
+    
+  }
+}
+
 module.exports = {
   autenticarUsuario,
   cerrarSesion,
@@ -82,4 +92,5 @@ module.exports = {
   verUsuario,
   agregarNegocio,
   modificarUsuarioHabilitado,
+  getClientById
 };

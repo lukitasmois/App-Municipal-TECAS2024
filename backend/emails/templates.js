@@ -37,8 +37,7 @@ const emailTemplates = {
         <li><strong>Número de Teléfono:</strong> ${params.phone}</li>
         <li><strong>CUIT:</strong> ${params.cuit}</li>
       </ul>
-      <p>Por favor, tome las medidas necesarias para regularizar la situación.</p>
-      <p>No responda a este correo. Para más información, comuníquese con habilitaciones.</p>
+      <p>No responda a este correo.</p>
     </body>
   </html>
 `

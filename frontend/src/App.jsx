@@ -1,6 +1,5 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
 import Inicio from "./views/Inicio.jsx";
 import EditarUsuario from "./views/usuario/EditarUsuario.jsx";
 import { useAuthContext } from "./context/AuthContext.jsx";
@@ -15,6 +14,7 @@ import CerrarSesion from "./views/usuario/CerrarSesion.jsx";
 import { Toaster } from "react-hot-toast";
 import { VerPlanos } from "./views/administracion/verPlanos.jsx";
 import RoleProtectedRoute from "./components/RoleProtectedRoute.jsx";
+import VerUsuario from "./views/usuario/VerUsuario.jsx";
 
 function App() {
   return (
@@ -37,6 +37,7 @@ function App() {
         <Route path="/crearNegocio" element={<CrearNegocioScreen />} />
         <Route path="/habilitaciones" element={<VistaHabilitaciones />} />
         <Route path="/vernegocio/:idNegocio" element={<VerNegocio />} />
+        <Route path="/ver-usuario/:id" element={<VerUsuario />}></Route>
       </Routes>
       <ToastContainer />
       <Toaster />

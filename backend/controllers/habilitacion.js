@@ -59,6 +59,17 @@ const verHabilitaciones = async (req, res) => {
 };
 
 const verHabilitacion = async (req, res) => {
+  const { id } = req.params;
+  const habilitacion = await Habilitacion.findById(id)
+    .populate({
+      path: "formularios",
+      populate: [{ path: "idFormulario" }, { path: "respuestas" }],
+    })
+    .populate("IdNegocio");
+  res.json(habilitacion);
+};
+
+const verHabilitacionPorLegajo = async (req, res) => {
   const { legajo } = req.params;
   const habilitacion = await Habilitacion.find({ NroLegajo: legajo });
   res.json(habilitacion);
@@ -67,5 +78,6 @@ const verHabilitacion = async (req, res) => {
 module.exports = {
   verHabilitaciones,
   verHabilitacion,
+  verHabilitacionPorLegajo,
   crearHabilitacion,
 };

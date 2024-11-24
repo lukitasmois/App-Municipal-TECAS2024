@@ -43,11 +43,12 @@ const verUsuarioLogeado = async (req, res) => {
 
 const editarUsuario = async (req, res) => {
   const { id } = req.params;
-  const { email, nombre, apellido, rol, cuil, telefono, imagen } = req.body;
+  const { email, nombre, apellido, rol, cuil, telefono, imagen, dni } =
+    req.body;
 
   const usuario = await Usuario.findByIdAndUpdate(
     id,
-    { email, nombre, apellido, rol, cuil, telefono, imagen },
+    { email, nombre, apellido, rol, cuil, telefono, imagen, dni },
     { new: true }
   );
 

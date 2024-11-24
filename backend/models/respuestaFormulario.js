@@ -26,7 +26,7 @@ const respuestaFormularioSchema = new Schema({
     type: String,
     enum: ["HABILITACIONES", "OBRAS PRIVADAS", "INGRESOS PUBLICOS", "TODOS"], //Falta agregar todos las areas/roles
   },
-  expediente: { type: Schema.Types.ObjectId, ref: "Expediente" },
+  habilitacion: { type: Schema.Types.ObjectId, ref: "Habilitacion" },
   estado: {
     type: String,
     default: "pendiente",

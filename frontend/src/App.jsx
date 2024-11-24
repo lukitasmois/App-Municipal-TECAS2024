@@ -14,6 +14,9 @@ import CerrarSesion from "./views/usuario/CerrarSesion.jsx";
 import { Toaster } from "react-hot-toast";
 import { VerPlanos } from "./views/administracion/verPlanos.jsx";
 import RoleProtectedRoute from "./components/RoleProtectedRoute.jsx";
+import VerHabilitacion from "./views/habilitacion/VerHabilitacion.jsx";
+import VerFormulario from "./views/formulario/VerFormulario.jsx";
+import EditarFormulario from "./views/formulario/EditarFormulario.jsx";
 
 function App() {
   return (
@@ -35,7 +38,16 @@ function App() {
         <Route path="/editar-usuario/:id" element={<EditarUsuario />} />
         <Route path="/crearNegocio" element={<CrearNegocioScreen />} />
         <Route path="/habilitaciones" element={<VistaHabilitaciones />} />
+        <Route path="/habilitaciones/:id" element={<VerHabilitacion />} />
         <Route path="/vernegocio/:idNegocio" element={<VerNegocio />} />
+        <Route
+          path="/verformulario/:idFormulario"
+          element={<VerFormulario />}
+        />
+        <Route
+          path="/editarformulario/:idFormulario"
+          element={<EditarFormulario />}
+        />
       </Routes>
       <ToastContainer />
       <Toaster />

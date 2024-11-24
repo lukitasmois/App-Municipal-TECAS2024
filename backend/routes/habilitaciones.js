@@ -2,18 +2,19 @@ const express = require("express");
 const router = express.Router();
 const { catchAsync } = require("../utils");
 const crearNegocio = require("../controllers/habilitacion");
-
 const {
   verHabilitacion,
   verHabilitaciones,
   crearHabilitacion,
+  verHabilitacionesxNegocio
 } = require("../controllers/habilitacion.js");
 
-//Busca legajos
+
 
 router.get("/", catchAsync(verHabilitaciones));
 
-//Busca legajo por id
+router.get("/negocio/:idNegocio", catchAsync(verHabilitacionesxNegocio));
+
 router.post("/crear", async (req, res) => {
   crearHabilitacion(req, res);
 });

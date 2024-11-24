@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import ListaNegocios from "./ListaNegocios";
 import { useParams } from "react-router-dom";
 import "./ListaNegocios.css";
+import { useNavigate } from "react-router-dom";
+import { CiBookmarkPlus } from "react-icons/ci";
+
 const GetBusinessesData = () => {
   const [businesses, setBusinesses] = useState([]);  
   const { id } = useParams();
-
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchBusinesses = async () => {
       try {
@@ -35,6 +38,13 @@ const GetBusinessesData = () => {
           <th>Ciudad</th>
           <th>Altura</th>
           <th>Rubro</th>
+          <th></th>
+          <th>
+          <button className="btn btn-success"
+          onClick={() => navigate('/crearNegocio')}
+           >
+          <CiBookmarkPlus size={20}/></button>
+          </th>
         </tr>
       </thead>
       <tbody>

@@ -7,6 +7,8 @@ const {
   verHabilitacion,
   verHabilitaciones,
   crearHabilitacion,
+  setLegajo,
+  setExpediente
 } = require("../controllers/habilitacion.js");
 
 //Busca legajos
@@ -20,4 +22,7 @@ router.post("/crear", async (req, res) => {
 
 router.get("/:legajo", catchAsync(verHabilitacion));
 
+router.post("/setlegajo", catchAsync(setLegajo));
+
+router.post("/setexpediente", catchAsync(setExpediente));
 module.exports = router;

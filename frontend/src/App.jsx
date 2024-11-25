@@ -12,7 +12,7 @@ import BarraNavegacion from "./components/BarraNavegacion.jsx";
 import VistaHabilitaciones from "./views/habilitacion/Habilitaciones.jsx";
 import CerrarSesion from "./views/usuario/CerrarSesion.jsx";
 import { Toaster } from "react-hot-toast";
-import { VerPlanos } from "./views/administracion/verPlanos.jsx";
+import { VerPlanos } from "./views/administracion/VerPlanos.jsx";
 import RoleProtectedRoute from "./components/RoleProtectedRoute.jsx";
 
 function App() {

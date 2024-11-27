@@ -1,5 +1,8 @@
 const Negocio = require("../controllers/negocio");
 const Habilitacion = require("../models/habilitacion");
+const {getBusinessById} = require("../controllers/negocio");
+const { getClientById } = require("./usuario");
+const sendMail = require("./email");
 const Formulario = require("../models/formulario");
 const RespuestaFormulario = require("../models/respuestaFormulario");
 //metodo que permite crear una habilitación
@@ -69,15 +72,67 @@ const verHabilitacion = async (req, res) => {
   res.json(habilitacion);
 };
 
+const getAutorization = async (req, res) =>{
+  try {
+    
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
+const verifyAuthorizationExpiration = async () =>{  
+  try {
+    const now = new Date();
+
+    const authorizations = await Habilitacion.find();
+
+    authorizations.forEach(authorization => {
+      if (authorization.Vencimiento && new Date(authorization.Vencimiento) < now) {
+        sendEmailAuthorizationExpired(authorization);
+      }
+    });
+  } catch (error) {
+    console.error('Error al verificar las habilitaciones:', error);
+  }
+};
+
+const sendEmailAuthorizationExpired = async (authorization) =>{
+  //TODO agregar el mail del sector de habilitaciones
+  const emailEmployee = process.env.EMAIL_HABILITACIONES
+  const {num_expediente: fileNumber, _id: idAutorization, Vencimiento: expiredDate, IdNegocio} = authorization
+  const {ciudad: city, calle: street, altura: number, idUsuario: clientId} = await getBusinessById(IdNegocio)  
+  const {nombre: name, apellido: lastName, email, telefono: phone, cuil: cuit} = await getClientById(clientId)
+  const mailInfo = {
+    to: emailEmployee,
+    subject: 'Habilitación Vencida',
+    template: 'expiredAuthorizationToEmployee',
+    params: {
+      fileNumber,
+      idAutorization,
+      expiredDate,
+      city,
+      street,
+      number,
+      name,
+      lastName,
+      phone,
+      cuit
+    }
+  };
+  await sendMail.sendMailJob(mailInfo);
+}
+
 const verHabilitacionPorLegajo = async (req, res) => {
   const { legajo } = req.params;
   const habilitacion = await Habilitacion.find({ NroLegajo: legajo });
   res.json(habilitacion);
 };
 
+
 module.exports = {
   verHabilitaciones,
   verHabilitacion,
-  verHabilitacionPorLegajo,
   crearHabilitacion,
+  verifyAuthorizationExpiration
+  verHabilitacionPorLegajo,
 };

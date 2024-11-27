@@ -9,6 +9,8 @@ const Usuario = require("./models/usuario.js");
 const { generarFormularios } = require("./utils");
 
 require("dotenv").config();
+const cron = require("node-cron")
+const { verifyAuthorizationExpiration } = require("./controllers/habilitacion.js");
 
 const path = require("path");
 
@@ -110,8 +112,12 @@ const archivosDir = path.join(__dirname, "archivos");
 app.use("/archivos", express.static(archivosDir));
 
 const usuariosRouter = require("./routes/usuario.js");
-const negociosRouter = require("./routes/negocio.js");
-const habilitacionesRouter = require("./routes/habilitaciones.js");
+const negociosRouter = require("./routes/negocio.js")
+const habilitacionesRouter = require("./routes/habilitaciones.js")
+const emailsRouter = require("./routes/emails.js");
+
+
+app.use("/api/emails", emailsRouter)
 const formulariosRouter = require("./routes/formularios.js");
 const respuestaFormulariosRouter = require("./routes/respuestaformularios.js");
 
@@ -121,8 +127,14 @@ app.use("/api/habilitaciones", habilitacionesRouter);
 app.use("/api/formularios", formulariosRouter);
 app.use("/api/respuestaformularios", respuestaFormulariosRouter);
 
-//Rutas
 
+//Rutas
 app.listen(puerto, () => {
   console.log(`Backend API en puerto ${puerto}`);
+});
+
+//node-cron
+cron.schedule('0 0 * * *', () => {
+  console.log('Ejecutando tarea de verificación de habilitaciones vencidas');
+  verifyAuthorizationExpiration()
 });

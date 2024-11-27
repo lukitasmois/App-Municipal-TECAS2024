@@ -127,12 +127,26 @@ const verHabilitacionPorLegajo = async (req, res) => {
   const habilitacion = await Habilitacion.find({ NroLegajo: legajo });
   res.json(habilitacion);
 };
-
+const  verHabilitacionesxNegocio = async (req, res) => {
+  const { idNegocio } = req.params;
+  try {
+    const habilitaciones = await Habilitacion.find({ IdNegocio : idNegocio});
+    res.status(200).json(habilitaciones);
+  } catch (error) {
+    res.status(500).json({ message: "Error al obtener las habilitaciones" });
+  }
+};
 
 module.exports = {
   verHabilitaciones,
   verHabilitacion,
   crearHabilitacion,
+
+
+  verHabilitacionesxNegocio,
   verifyAuthorizationExpiration,
-  verHabilitacionPorLegajo,
+
+  verifyAuthorizationExpiration,
+  verHabilitacionPorLegajo
+
 };

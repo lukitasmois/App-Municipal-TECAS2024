@@ -16,6 +16,7 @@ const esquemaNegocio = Joi.object({
 
     //TODO: 
     //Capturar el id del usario desde el token
+    
     idUsuario: Joi.string().required(),
 })
 

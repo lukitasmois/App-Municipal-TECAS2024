@@ -43,11 +43,12 @@ const verUsuarioLogeado = async (req, res) => {
 
 const editarUsuario = async (req, res) => {
   const { id } = req.params;
-  const { email, nombre, apellido, rol, cuil, telefono, imagen } = req.body;
+  const { email, nombre, apellido, rol, cuil, telefono, imagen, dni } =
+    req.body;
 
   const usuario = await Usuario.findByIdAndUpdate(
     id,
-    { email, nombre, apellido, rol, cuil, telefono, imagen },
+    { email, nombre, apellido, rol, cuil, telefono, imagen, dni },
     { new: true }
   );
 
@@ -73,6 +74,16 @@ const modificarUsuarioHabilitado = async (req, res) => {
   );
 };
 
+const getClientById = async (id) =>{
+  try {
+    const client = await Usuario.findById(id)
+    return client
+  } catch (error) {
+    console.log(`Error al buscar el cliente por id: ${error}`);
+    
+  }
+}
+
 module.exports = {
   autenticarUsuario,
   cerrarSesion,
@@ -82,4 +93,5 @@ module.exports = {
   verUsuario,
   agregarNegocio,
   modificarUsuarioHabilitado,
+  getClientById
 };

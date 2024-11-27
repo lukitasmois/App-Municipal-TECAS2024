@@ -6,6 +6,7 @@ const crearNegocio = require("../controllers/habilitacion");
 const {
   verHabilitacion,
   verHabilitaciones,
+  verHabilitacionPorLegajo,
   crearHabilitacion,
   getNextExpire,
 } = require("../controllers/habilitacion.js");
@@ -13,6 +14,8 @@ const {
 //Busca legajos
 
 router.get("/", catchAsync(verHabilitaciones));
+router.get("/:id", catchAsync(verHabilitacion));
+router.get("/legajo/:legajo", catchAsync(verHabilitacionPorLegajo));
 
 //Busca legajo por id
 router.post("/crear", async (req, res) => {
@@ -21,4 +24,5 @@ router.post("/crear", async (req, res) => {
 
 router.get("/:legajo", catchAsync(verHabilitacion));
 router.get("/expireBussines", getNextExpire);
+
 module.exports = router;

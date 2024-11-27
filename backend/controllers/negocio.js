@@ -224,6 +224,15 @@ const verNegocio = async (req, res) => {
   }
 };
 
+const getBusinessById = async (id) =>{
+
+  try {
+    const bussiness= await Negocio.findById(id)
+    return bussiness
+  } catch (error) {
+    console.log(`Error al obtener negocio: ${error}`);
+  }
+} 
 
 module.exports = {
   crearNegocio,
@@ -234,5 +243,6 @@ module.exports = {
   getNegocios,
   changeStateBusiness,
   obtenerPlano,
+  getBusinessById
 };
 

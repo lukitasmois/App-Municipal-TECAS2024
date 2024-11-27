@@ -142,8 +142,11 @@ module.exports = {
   verHabilitacion,
   crearHabilitacion,
 
-  verHabilitacionesxNegocio
-  verifyAuthorizationExpiration
-  verHabilitacionPorLegajo,
+
+  verHabilitacionesxNegocio,
+  verifyAuthorizationExpiration,
+
+  verifyAuthorizationExpiration,
+  verHabilitacionPorLegajo
 
 };

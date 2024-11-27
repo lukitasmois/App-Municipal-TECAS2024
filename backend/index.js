@@ -6,6 +6,8 @@ const session = require("express-session");
 const passport = require("passport");
 const { Strategy: GoogleStrategy } = require("passport-google-oauth20");
 const Usuario = require("./models/usuario.js");
+const { generarFormularios } = require("./utils");
+
 require("dotenv").config();
 
 const path = require("path");
@@ -98,6 +100,9 @@ passport.deserializeUser((user, done) => {
 });
 //passport
 
+//Generar los esqueletos de los formularios en la base de datos a partir de los JSON que estan en la carpeta formularios-JSON
+generarFormularios();
+
 //Rutas
 
 app.use("static", express.static(path.join(__dirname, "public")));
@@ -105,12 +110,16 @@ const archivosDir = path.join(__dirname, "archivos");
 app.use("/archivos", express.static(archivosDir));
 
 const usuariosRouter = require("./routes/usuario.js");
-const negociosRouter = require("./routes/negocio.js")
-const habilitacionesRouter = require("./routes/habilitaciones.js")
+const negociosRouter = require("./routes/negocio.js");
+const habilitacionesRouter = require("./routes/habilitaciones.js");
+const formulariosRouter = require("./routes/formularios.js");
+const respuestaFormulariosRouter = require("./routes/respuestaformularios.js");
 
 app.use("/api/usuarios", usuariosRouter);
-app.use("/api/negocios", negociosRouter)
-app.use("/api/habilitaciones", habilitacionesRouter)
+app.use("/api/negocios", negociosRouter);
+app.use("/api/habilitaciones", habilitacionesRouter);
+app.use("/api/formularios", formulariosRouter);
+app.use("/api/respuestaformularios", respuestaFormulariosRouter);
 
 //Rutas
 

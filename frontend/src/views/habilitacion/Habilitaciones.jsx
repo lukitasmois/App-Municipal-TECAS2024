@@ -42,7 +42,7 @@ const VistaHabilitaciones = () => {
 
   async function traerHabilitaciones() {
     const habilitaciones = await fetch(
-      `${import.meta.env.VITE_API_URL}/api/habilitaciones/${inputValue}`
+      `${import.meta.env.VITE_API_URL}/api/habilitaciones/legajo/${inputValue}`
     );
     const hab_fetch = await habilitaciones.json();
     alert(hab_fetch[0].NroLegajo);

@@ -7,6 +7,7 @@ function EditarUsuario() {
   const [usuario, setUsuario] = useState({
     nombre: "",
     apellido: "",
+    dni: "",
     cuil: "",
     telefono: "",
     email: "",
@@ -50,6 +51,7 @@ function EditarUsuario() {
     const datosValidos = manejarValidaciones({
       nombre: usuario.nombre,
       apellido: usuario.apellido,
+      dni: usuario.dni,
       cuil: usuario.cuil,
       telefono: usuario.telefono,
       email: usuario.email,
@@ -64,6 +66,7 @@ function EditarUsuario() {
     // Agregar datos del formulario (texto)
     formData.append("nombre", usuario.nombre);
     formData.append("apellido", usuario.apellido);
+    formData.append("dni", usuario.dni);
     formData.append("cuil", usuario.cuil);
     formData.append("telefono", usuario.telefono);
     formData.append("email", usuario.email);
@@ -124,6 +127,16 @@ function EditarUsuario() {
             value={usuario.apellido}
           />
           <br />
+          <label>DNI:</label>
+          <br />
+          <input
+            type="text"
+            placeholder="Ingrese su DNI"
+            name="dni"
+            onChange={manejoCambios}
+            value={usuario.dni}
+          />
+          <br />
           <label>CUIL:</label>
           <br />
           <input
@@ -175,11 +188,11 @@ function EditarUsuario() {
   return <>{mostrarFormulario()}</>;
 }
 
-function manejarValidaciones({ nombre, apellido, cuil, telefono, email }) {
+function manejarValidaciones({ nombre, apellido, dni, cuil, telefono, email }) {
   const regexCUIL = /^([0-9]{2})-?([0-9]{8})-?([0-9])$/;
   const regexEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  if (!nombre || !apellido || !cuil || !telefono || !email) {
+  if (!nombre || !apellido || !dni || !cuil || !telefono || !email) {
     toast.error("Todos los campos son obligatorios");
     return false;
   } else if (!regexCUIL.test(cuil)) {

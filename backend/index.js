@@ -9,7 +9,7 @@ const Usuario = require("./models/usuario.js");
 require("dotenv").config();
 const cron = require("node-cron"); 
 const path = require("path");
-
+const { nextToExpire }= require("./cronJobs/cronJobs.js");
 app.use(express.json());
 
 app.use(express.json());
@@ -116,7 +116,9 @@ app.use("/api/emails", emailsRouter)
 
 //Rutas
 //cron jobs
-
+cron.schedule('* * * * *', () => {
+  nextToExpire();
+});
 //cron jobs
 
 app.listen(puerto, () => {

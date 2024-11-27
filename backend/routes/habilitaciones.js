@@ -7,6 +7,7 @@ const {
   verHabilitacion,
   verHabilitaciones,
   crearHabilitacion,
+  getNextExpire,
 } = require("../controllers/habilitacion.js");
 
 //Busca legajos
@@ -19,5 +20,5 @@ router.post("/crear", async (req, res) => {
 });
 
 router.get("/:legajo", catchAsync(verHabilitacion));
-
+router.get("/expireBussines", getNextExpire);
 module.exports = router;

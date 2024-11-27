@@ -20,6 +20,7 @@ const {
   obtenerPlano,
   getNegocios,
   changeStateBusiness,
+  getNextExpire
 } = require("../controllers/negocio");
 
 //configuracion para multer (guardar archivos)
@@ -57,5 +58,6 @@ router.put(
 );
 
 router.get("/:id", verNegocio);
+
 
 module.exports = router;

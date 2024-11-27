@@ -1,4 +1,5 @@
-const negocio = require("../controllers/negocio")
+const negocio = require("../controllers/negocio");
+const habilitacion = require("../models/habilitacion");
 const Habilitacion = require("../models/habilitacion");
 //metodo que permite crear una habilitación
 const crearHabilitacion = async (req, res) => {
@@ -31,9 +32,25 @@ const verHabilitacion = async (req, res) => {
   res.json(habilitacion);
 };
 
+const getNextExpire = async (req, res) => {
+  try {
+      const actual_date = new Date();
+      const limit_date = new Date(actual_date);
+      limit_date.setDate(actual_date.getDate() + 20);
+      const habilitaciones = await habilitacion.find({
+          Vencimiento: { $gte: actual_date, $lte: limit_date }
+      });
+
+      res.status(200).json(habilitaciones);
+  } catch (err) {
+      console.error("Error obteniendo habilitaciones próximos a vencer:", err);
+      res.status(500).json({ message: "Error obteniendo habilitaciones próximos a vencer" });
+  }
+};
 
 module.exports = {
   verHabilitaciones,
   verHabilitacion,
-  crearHabilitacion
+  crearHabilitacion,
+  getNextExpire,
 };

@@ -133,6 +133,6 @@ module.exports = {
   verHabilitaciones,
   verHabilitacion,
   crearHabilitacion,
-  verifyAuthorizationExpiration
+  verifyAuthorizationExpiration,
   verHabilitacionPorLegajo,
 };

@@ -144,6 +144,9 @@ const getNextExpire = async (req, res) => {
   } catch (err) {
       console.error("Error obteniendo habilitaciones próximos a vencer:", err);
       res.status(500).json({ message: "Error obteniendo habilitaciones próximos a vencer" });
+  }
+}
+      
 
 const  verHabilitacionesxNegocio = async (req, res) => {
   const { idNegocio } = req.params;

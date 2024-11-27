@@ -10,6 +10,7 @@ const UsuarioSchema = new mongoose.Schema({
   email: { type: String },
   nombre: { type: String },
   apellido: { type: String },
+  dni: { type: String },
   cuil: { type: String },
   telefono: { type: String },
   imagen: { type: String },

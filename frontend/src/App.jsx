@@ -17,6 +17,7 @@ import RoleProtectedRoute from "./components/RoleProtectedRoute.jsx";
 import VerHabilitacion from "./views/habilitacion/VerHabilitacion.jsx";
 import VerFormulario from "./views/formulario/VerFormulario.jsx";
 import EditarFormulario from "./views/formulario/EditarFormulario.jsx";
+import VerUsuario from "./views/usuario/VerUsuario.jsx";
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
           path="/editarformulario/:idFormulario"
           element={<EditarFormulario />}
         />
+        <Route path="/ver-usuario/:id" element={<VerUsuario />}></Route>
       </Routes>
       <ToastContainer />
       <Toaster />

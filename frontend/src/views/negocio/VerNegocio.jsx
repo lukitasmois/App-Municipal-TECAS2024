@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import VerPDF from "../../components/VerPDF";
 import Contenedor from "../../components/Contenedor";
+import HistorialNegocio from "./HistorialNegocio";
 import { FaDownload } from "react-icons/fa";
 import "./VerNegocio.css";
 
@@ -37,11 +38,12 @@ function VerNegocio() {
       return (
         <div style={{ margin: "0 auto" }} className="mt-5 ancho-contenedor-PDF">
           <div>
+          <HistorialNegocio idNegocio={idNegocio}/>
             <Contenedor>
               <h2>
                 Datos de{" "}
                 <span style={{ color: "rgb(100, 100, 180)" }}>
-                  Nombre del negocio
+                  Nombre del negocio 
                 </span>
               </h2>
               <ul style={{ fontSize: "18px" }}>
@@ -117,6 +119,7 @@ function VerNegocio() {
                 </div>
               )}
             </div>
+            
           </div>
         </div>
       );

@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently \"cd ./backend && nodemon index.js\" \"cd ./frontend && npm run dev\""
+    "dev": "concurrently \"cd ./backend && nodemon index.js\" \"cd ./frontend && npm run dev\"",
+    "instalar": "npm install && cd ./backend && npm install && cd ../frontend && npm install"
+    
   },
   "keywords": [],
   "author": "",

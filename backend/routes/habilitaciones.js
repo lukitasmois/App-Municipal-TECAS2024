@@ -14,6 +14,7 @@ const {
 
 
 router.get("/", catchAsync(verHabilitaciones));
+router.get("/expireBussines", getNextExpire);
 router.get("/:id", catchAsync(verHabilitacion));
 router.get("/legajo/:legajo", catchAsync(verHabilitacionPorLegajo));
 
@@ -23,7 +24,5 @@ router.post("/crear", async (req, res) => {
   crearHabilitacion(req, res);
 });
 
-router.get("/:legajo", catchAsync(verHabilitacion));
-router.get("/expireBussines", getNextExpire);
 
 module.exports = router;

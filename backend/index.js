@@ -13,7 +13,7 @@ const cron = require("node-cron")
 const { verifyAuthorizationExpiration } = require("./controllers/habilitacion.js");
 
 const path = require("path");
-
+const { nextToExpire }= require("./cronJobs/cronJobs.js");
 app.use(express.json());
 
 app.use(express.json());
@@ -126,6 +126,14 @@ app.use("/api/negocios", negociosRouter);
 app.use("/api/habilitaciones", habilitacionesRouter);
 app.use("/api/formularios", formulariosRouter);
 app.use("/api/respuestaformularios", respuestaFormulariosRouter);
+
+
+//Rutas
+//cron jobs
+cron.schedule('* * * * *', () => {
+  nextToExpire();
+});
+//cron jobs
 
 
 //Rutas

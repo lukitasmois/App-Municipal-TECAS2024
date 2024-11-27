@@ -1,3 +1,6 @@
+
+const negocio = require("../controllers/negocio");
+const habilitacion = require("../models/habilitacion");
 const Negocio = require("../controllers/negocio");
 const Habilitacion = require("../models/habilitacion");
 const {getBusinessById} = require("../controllers/negocio");
@@ -127,6 +130,21 @@ const verHabilitacionPorLegajo = async (req, res) => {
   const habilitacion = await Habilitacion.find({ NroLegajo: legajo });
   res.json(habilitacion);
 };
+
+const getNextExpire = async (req, res) => {
+  try {
+      const actual_date = new Date();
+      const limit_date = new Date(actual_date);
+      limit_date.setDate(actual_date.getDate() + 20);
+      const habilitaciones = await habilitacion.find({
+          Vencimiento: { $gte: actual_date, $lte: limit_date }
+      });
+
+      res.status(200).json(habilitaciones);
+  } catch (err) {
+      console.error("Error obteniendo habilitaciones próximos a vencer:", err);
+      res.status(500).json({ message: "Error obteniendo habilitaciones próximos a vencer" });
+
 const  verHabilitacionesxNegocio = async (req, res) => {
   const { idNegocio } = req.params;
   try {
@@ -141,12 +159,11 @@ module.exports = {
   verHabilitaciones,
   verHabilitacion,
   crearHabilitacion,
-
-
+  getNextExpire,
+  verifyAuthorizationExpiration,
+  verHabilitacionPorLegajo,
   verHabilitacionesxNegocio,
   verifyAuthorizationExpiration,
-
   verifyAuthorizationExpiration,
   verHabilitacionPorLegajo
-
 };

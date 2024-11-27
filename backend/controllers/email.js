@@ -23,3 +23,4 @@ const sendMailJob = async ({ to, subject, template, params }) => {
   
 
 module.exports = {sendMail, sendMailJob}
+

@@ -3,6 +3,7 @@ const fs = require("fs");
 const Negocio = require("../models/negocio");
 const { agregarNegocio } = require("./usuario");
 const { default: mongoose } = require("mongoose");
+const negocio = require("../models/negocio");
 
 //Función para crear un nuevo negocio.
 const crearNegocio = async (req, res) => {

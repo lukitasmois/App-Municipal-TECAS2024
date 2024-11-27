@@ -1,0 +1,80 @@
+{
+  "nombreFormulario": "Formulario para probar inputs",
+  "campos": [
+    {
+      "tipo": "text",
+      "etiqueta": "Nombre y apellido",
+      "requerido": true,
+      "valor": ""
+    },
+    {
+      "tipo": "number",
+      "etiqueta": "DNI",
+      "requerido": true,
+      "valor": ""
+    },
+    {
+      "tipo": "select",
+      "etiqueta": "Ciudad de residencia",
+      "requerido": true,
+      "opciones": [
+        "Azul",
+        "Cachari",
+        "Chillar",
+        "Olavarria",
+        "Tandil",
+        "Tapalque"
+      ],
+      "valor": "Azul"
+    },
+    {
+      "tipo": "text",
+      "etiqueta": "Domicilio del comercio",
+      "requerido": true,
+      "valor": ""
+    },
+    {
+      "tipo": "select",
+      "etiqueta": "Rubro",
+      "requerido": true,
+      "opciones": [
+        "Agricultura y Agroindustria",
+        "Alimentación y Bebidas",
+        "Arte y Cultura",
+        "Automotriz",
+        "Belleza y Cuidado Personal",
+        "Construcción",
+        "Deportes y Recreación",
+        "Educación y Formación",
+        "Electrónica y Tecnología",
+        "Energía y Recursos Naturales",
+        "Farmacéutica y Biotecnología",
+        "Finanzas y Seguros",
+        "Industria Textil y Moda",
+        "Inmobiliaria y Bienes Raíces",
+        "Juguetes y Juegos",
+        "Logística y Transporte",
+        "Medios de Comunicación y Entretenimiento",
+        "Minería y Metales",
+        "Muebles y Decoración",
+        "Productos de Consumo",
+        "Química y Materiales",
+        "Reciclaje y Gestión de Residuos",
+        "Retail y Comercio Minorista",
+        "Salud y Bienestar",
+        "Seguridad y Vigilancia",
+        "Servicios Profesionales y Consultoría",
+        "Servicios Públicos y Gobierno",
+        "Telecomunicaciones",
+        "Turismo y Hospitalidad"
+      ],
+      "valor": "Agricultura y Agroindustria"
+    },
+    {
+      "tipo": "checkbox",
+      "etiqueta": "Terminos y Condiciones",
+      "requerido": true,
+      "valor": false
+    }
+  ]
+}

@@ -5,6 +5,7 @@ const crearNegocio = require("../controllers/habilitacion");
 const {
   verHabilitacion,
   verHabilitaciones,
+  verHabilitacionPorLegajo,
   crearHabilitacion,
   verHabilitacionesxNegocio
 } = require("../controllers/habilitacion.js");
@@ -12,13 +13,13 @@ const {
 
 
 router.get("/", catchAsync(verHabilitaciones));
+router.get("/:id", catchAsync(verHabilitacion));
+router.get("/legajo/:legajo", catchAsync(verHabilitacionPorLegajo));
 
 router.get("/negocio/:idNegocio", catchAsync(verHabilitacionesxNegocio));
 
 router.post("/crear", async (req, res) => {
   crearHabilitacion(req, res);
 });
-
-router.get("/:legajo", catchAsync(verHabilitacion));
 
 module.exports = router;

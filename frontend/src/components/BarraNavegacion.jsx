@@ -18,7 +18,7 @@ function BarraNavegacion() {
         </li>
       )}
           <li className="nav-item">
-            <NavLink className="nav-link" to="/">
+            <NavLink className="nav-link" to={`/ver-usuario/${usuarioLogeado.usuario._id}`}>
               Hola {usuarioLogeado.usuario.nombre}!
             </NavLink>
           </li>

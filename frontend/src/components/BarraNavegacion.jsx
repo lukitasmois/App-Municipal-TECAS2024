@@ -10,12 +10,19 @@ function BarraNavegacion() {
     if (usuarioLogeado.logeado) {
       return (
         <> 
-        {usuarioLogeado.usuario.rol === "HABILITACION"   && (
-          <li className="nav-item">
-          <NavLink className="nav-link" to="/habilitaciones">
-            Ver Habilitaciones
-          </NavLink>
-        </li>
+        {(usuarioLogeado.usuario.rol === "HABILITACION" || usuarioLogeado.usuario.rol == "EMPLEADO")   && (
+          <>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/habilitaciones">
+                Ver Habilitaciones
+              </NavLink>
+            </li>
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/administracion/ver-planos">
+                Ver Planos
+              </NavLink>
+            </li>
+          </>
       )}
           <li className="nav-item">
             <NavLink className="nav-link" to={`/ver-usuario/${usuarioLogeado.usuario._id}`}>

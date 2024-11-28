@@ -2,7 +2,7 @@ const axios = require("axios");
 const nextToExpire = async () => {
     try{
         const habilitaciones = await axios.get(`${process.env.CLIENT_URL}/api/habilitaciones/expireBussines`);
-        console.log(habilitaciones);
+        console.log(habilitaciones.data);
         for(let habilitacion of habilitaciones.data){
             let bussines = await axios.get(`${process.env.CLIENT_URL}/api/negocios/${habilitacion.IdNegocio}`)
             let user = await axios.get(`${process.env.CLIENT_URL}/api/usuarios/${bussines.data.idUsuario}`) 

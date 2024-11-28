@@ -19,7 +19,7 @@ const handleHabilitar = async (id) => {
 const ListaNegocios = ({ business }) => {
   const navigate = useNavigate();
   return (
-    <tr className="datos-negocio">
+    <tr>
       <td>{business._id}</td>
       <td>{business.calle}</td>
       <td>{business.ciudad}</td>
@@ -28,7 +28,7 @@ const ListaNegocios = ({ business }) => {
       <td>
         <button
           onClick={() => handleHabilitar(business._id)}
-          className="custom-button"
+          className="button-25"
         >
           Habilitar
         </button>
@@ -36,7 +36,7 @@ const ListaNegocios = ({ business }) => {
       <td>
         <button
           onClick={() => navigate(`/vernegocio/${business._id}`)}
-          className="custom-button" >
+          className="button-25" >
           Ver</button>
       </td>
     </tr>

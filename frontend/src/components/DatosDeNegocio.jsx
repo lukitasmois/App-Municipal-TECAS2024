@@ -28,9 +28,9 @@ const GetBusinessesData = () => {
   }, [id]); 
 
   return (
-    <div>
-    <div className="custom-container"><h1>Tus Negocios</h1></div>
-    <table className="datos-negocio">
+    <div className="center-margin-container">
+    <div className="custom-container"><h1 className="white-h1">Tus Negocios</h1></div>
+    <table className="table-responsive">
       <thead>
         <tr>
           <th>id</th>

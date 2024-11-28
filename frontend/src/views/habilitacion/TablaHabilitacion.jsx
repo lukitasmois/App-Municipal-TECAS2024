@@ -4,6 +4,8 @@ import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { IoSearchOutline } from "react-icons/io5";
 import EstadoConEsfera from "../../components/Estado";
 import Contenedor from "../../components/Contenedor";
+import { Actions } from "../../components/Actions";
+import { useNavigate } from "react-router-dom";
 const TablaHabilitaciones = ({ habilitaciones }) => {
   const [NroLegajo, setNroLegajo] = useState([]);
   const [Busqueda,setBusqueda] = useState(habilitaciones);
@@ -15,6 +17,7 @@ const TablaHabilitaciones = ({ habilitaciones }) => {
   const HabilitacionesPagina = Busqueda.slice(PrimerElemento, UltimoElemento);//trae el intervalo de todos los valores por pagina
 
   const PaginasTotales = Math.ceil(Busqueda.length / ElementosPorPagina);//calcular las paginas totales
+  const navigate = useNavigate()
   useEffect(() => {
     setBusqueda(habilitaciones);
 }, [habilitaciones]);
@@ -50,6 +53,18 @@ const TablaHabilitaciones = ({ habilitaciones }) => {
   }
   setPaginaActual(1);
   }
+
+  const handleViewAutorization = async (habilitacion) =>{
+    navigate(`/habilitaciones/${habilitacion._id}`)
+  }
+
+  const actions = [
+    {
+      name: "Ver Habilitacion",
+      funcion: handleViewAutorization
+    }
+  ]
+
   return (
     <>
     
@@ -95,6 +110,7 @@ const TablaHabilitaciones = ({ habilitaciones }) => {
               <EstadoConEsfera texto={habilitacion.estado} color={Estado(habilitacion.estado)} />
             </td>
             <td>{habilitacion.Vencimiento ? "Vence: " + habilitacion.Vencimiento : "Sin Vencimiento"}</td>
+            <td><Actions actions={actions} dato={habilitacion} /></td>
           </tr>
         ))}
       </tbody>

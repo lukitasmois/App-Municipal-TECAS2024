@@ -129,36 +129,38 @@ function CrearNegocioForm({usuarioLogeado}) {
             </div>
     
             <div className="mb-3">
-                <label htmlFor="titulo" className="form-label">Titulo de propiedad</label>
-                <input 
-                    type="file"
-                    id="titulo"
-                    className="form-control"
-                    {...register("titulo", {
-                        required:{
-                            value: true,
-                            message: "No se selecciono el titulo de propiedad"
-                        }
-                    })}
-                />
-                {errors.titulo && <div className="text-danger">{errors.titulo.message}</div>}
-            </div>
-    
-            <div className="mb-3">
-                <label htmlFor="plano" className="form-label">Plano de Edificacion</label>
-                <input 
-                    type="file"
-                    id="plano"
-                    className="form-control"
-                    {...register("plano", {
-                        required:{
-                            value: true,
-                            message: "No se selecciono el plano de edificacion"
-                        }
-                    })}
-                />
-                {errors.plano && <div className="text-danger">{errors.plano.message}</div>}
-            </div>
+    <label htmlFor="titulo" className="form-label">Titulo de propiedad</label>
+    <input 
+        type="file"
+        id="titulo"
+        className="form-control"
+        accept=".pdf"
+        {...register("titulo", {
+            required:{
+                value: true,
+                message: "No se selecciono el titulo de propiedad"
+            }
+        })}
+    />
+    {errors.titulo && <div className="text-danger">{errors.titulo.message}</div>}
+</div>
+
+<div className="mb-3">
+    <label htmlFor="plano" className="form-label">Plano de Edificacion</label>
+    <input 
+        type="file"
+        id="plano"
+        className="form-control"
+        accept=".pdf"
+        {...register("plano", {
+            required:{
+                value: true,
+                message: "No se selecciono el plano de edificacion"
+            }
+        })}
+    />
+    {errors.plano && <div className="text-danger">{errors.plano.message}</div>}
+</div>
     
             <button type="submit" className="btn btn-primary">Enviar</button>
         </form>

@@ -9,23 +9,35 @@ function BarraNavegacion() {
   function navegacionLogeado() {
     if (usuarioLogeado.logeado) {
       return (
-        <> 
-        {(usuarioLogeado.usuario.rol === "HABILITACION" || usuarioLogeado.usuario.rol == "EMPLEADO")   && (
-          <>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/habilitaciones">
-                Ver Habilitaciones
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/administracion/ver-planos">
-                Ver Planos
-              </NavLink>
-            </li>
-          </>
-      )}
+        <>
+          {(usuarioLogeado.usuario.rol === "HABILITACION" ||
+            usuarioLogeado.usuario.rol == "EMPLEADO") && (
+            <>
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link"
+                  to={`/ver_negocios/${usuarioLogeado.usuario._id}`}
+                >
+                  Ver Negocios
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/habilitaciones">
+                  Ver Habilitaciones
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/administracion/ver-planos">
+                  Ver Planos
+                </NavLink>
+              </li>
+            </>
+          )}
           <li className="nav-item">
-            <NavLink className="nav-link" to={`/ver-usuario/${usuarioLogeado.usuario._id}`}>
+            <NavLink
+              className="nav-link"
+              to={`/ver-usuario/${usuarioLogeado.usuario._id}`}
+            >
               Hola {usuarioLogeado.usuario.nombre}!
             </NavLink>
           </li>
@@ -37,7 +49,6 @@ function BarraNavegacion() {
         </>
       );
     }
-    
   }
 
   return (
@@ -66,15 +77,14 @@ function BarraNavegacion() {
                 Inicio
               </NavLink>
             </li>
-            
+
             <li className="nav-item">
               <NavLink className="nav-link" to="/Preguntas-frecuentes">
                 Preguntas frecuentes
               </NavLink>
             </li>
-           
           </ul>
-          
+
           <ul className="navbar-nav ms-auto me-5 mb-2 mb-lg-0">
             {navegacionLogeado()}
           </ul>

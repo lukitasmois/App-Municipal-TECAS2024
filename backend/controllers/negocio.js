@@ -58,11 +58,12 @@ function guardarArchivos(archivos, idUsuario, idNegocio) {
 
   // Iterar sobre cada archivo y guardar su ruta
   archivos.forEach((archivo, index) => {
+    const extension = archivo.originalname.split(".").pop();
     let nuevoNombre;
     if (index === INDEX_PLANO) {
-      nuevoNombre = `plano_${idNegocio}.pdf`;
+      nuevoNombre = `plano_${idNegocio}.${extension}`;
     } else if (index === INDEX_TITULO) {
-      nuevoNombre = `titulo_${idNegocio}.pdf`;
+      nuevoNombre = `titulo_${idNegocio}.${extension}`;
     }
 
     const ruta = guardarArchivo(archivo, idUsuario, idNegocio, nuevoNombre);
@@ -210,11 +211,20 @@ const verNegocio = async (req, res) => {
     }
 
     const baseUrl = `${req.protocol}://${req.get("host")}`;
+    const dirPath = `${__dirname}/../archivos/${negocio.idUsuario}/${negocio._id}`;
+
+    // Buscar las extensiones de los archivos en el directorio
+    const tituloExt = getExtension(dirPath, `titulo_${negocio._id}`);
+    const planoExt = getExtension(dirPath, `plano_${negocio._id}`);
+
+    if (!tituloExt || !planoExt) {
+      return res.status(404).json({ mensaje: "Archivos no encontrados" });
+    }
 
     const negocioConUrls = {
       ...negocio.toObject(),
-      titulo: `${baseUrl}/${negocio.titulo.replace(/\\/g, "/")}`,
-      plano: `${baseUrl}/${negocio.plano.replace(/\\/g, "/")}`,
+      titulo: `${baseUrl}/archivos/${negocio.idUsuario}/${negocio._id}/titulo_${negocio._id}${tituloExt}`,
+      plano: `${baseUrl}/archivos/${negocio.idUsuario}/${negocio._id}/plano_${negocio._id}${planoExt}`,
     };
 
     res.json(negocioConUrls);
@@ -224,15 +234,21 @@ const verNegocio = async (req, res) => {
   }
 };
 
-const getBusinessById = async (id) =>{
+// Función para obtener la extensión del archivo
+const getExtension = (dirPath, baseName) => {
+  const files = fs.readdirSync(dirPath);
+  const file = files.find((f) => f.startsWith(baseName));
+  return file ? path.extname(file) : null;
+};
 
+const getBusinessById = async (id) => {
   try {
-    const bussiness= await Negocio.findById(id)
-    return bussiness
+    const bussiness = await Negocio.findById(id);
+    return bussiness;
   } catch (error) {
     console.log(`Error al obtener negocio: ${error}`);
   }
-} 
+};
 
 module.exports = {
   crearNegocio,
@@ -243,6 +259,5 @@ module.exports = {
   getNegocios,
   changeStateBusiness,
   obtenerPlano,
-  getBusinessById
+  getBusinessById,
 };
-

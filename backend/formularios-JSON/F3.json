@@ -1,0 +1,97 @@
+{
+    "nombreFormulario": "Formulario F3",
+    "campos": [
+      {
+        "tipo": "text",
+        "etiqueta": "Nombre y Apellido",
+        "requerido": true,
+        "valor": ""
+      },
+      {
+        "tipo": "text",
+        "etiqueta": "Apellido",
+        "requerido": true,
+        "valor": ""
+      },
+      {
+        "tipo": "number",
+        "etiqueta": "DNI",
+        "requerido": true,
+        "valor": ""
+      },
+      {
+        "tipo": "text",
+        "etiqueta": "Calle de domicilio",
+        "requerido": true,
+        "valor": ""
+      },
+      {
+        "tipo": "number",
+        "etiqueta": "Número de domicilio",
+        "requerido": true,
+        "valor": ""
+      },
+      {
+        "tipo": "text",
+        "etiqueta": "Calle del local a habilitar",
+        "requerido": true,
+        "valor": ""
+      },
+      {
+        "tipo": "number",
+        "etiqueta": "Número del local a habilitar",
+        "requerido": true,
+        "valor": ""
+      },
+      {
+        "tipo": "select",
+        "etiqueta": "Localidad",
+        "requerido": true,
+        "opciones": [
+          "Azul",
+          "Cachari",
+          "Chillar",
+          "Olavarria",
+          "Tapalque"
+        ],
+        "valor": "Azul"
+      },
+      {
+        "tipo": "select",
+        "etiqueta": "Rubro",
+        "requerido": true,
+        "opciones": [
+          "Agricultura y Agroindustria",
+          "Alimentación y Bebidas",
+          "Arte y Cultura",
+          "Automotriz",
+          "Belleza y Cuidado Personal",
+          "Construcción",
+          "Deportes y Recreación",
+          "Educación y Formación",
+          "Electrónica y Tecnología",
+          "Energía y Recursos Naturales",
+          "Farmacéutica y Biotecnología",
+          "Finanzas y Seguros",
+          "Industria Textil y Moda",
+          "Inmobiliaria y Bienes Raíces",
+          "Juguetes y Juegos",
+          "Logística y Transporte",
+          "Medios de Comunicación y Entretenimiento",
+          "Minería y Metales",
+          "Muebles y Decoración",
+          "Productos de Consumo",
+          "Química y Materiales",
+          "Reciclaje y Gestión de Residuos",
+          "Retail y Comercio Minorista",
+          "Salud y Bienestar",
+          "Seguridad y Vigilancia",
+          "Servicios Profesionales y Consultoría",
+          "Servicios Públicos y Gobierno",
+          "Telecomunicaciones",
+          "Turismo y Hospitalidad"
+        ],
+        "valor": "Agricultura y Agroindustria"
+      }
+    ]
+  }

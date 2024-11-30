@@ -1,55 +1,54 @@
-
 tr:nth-child(even) {
-    background-color: #D6EEEE;
-  }
+  background-color: #d6eeee;
+}
 tr {
-    border: 1px solid #ccc;
+  border: 1px solid #ccc;
 }
 
- th,
- td {
-    text-align: center;
-    padding: 8px;
-    width: 100%;
+.celda-negocio {
+  text-align: center;
+  padding: 8px;
+  width: 100%;
 }
 
 .custom-container {
-    background-color: #050051; 
-    padding: 2px;
-    border-radius: 10px;
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
-  }
-.center-margin-container{
-    margin-right: 15%;
-    margin-left: 15%;
-    margin-top: 5%;
+  background-color: #050051;
+  padding: 2px;
+  border-radius: 10px;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
 }
-.white-h1{
-    color: white;
-    text-align: center;
+.center-margin-container {
+  margin-right: 15%;
+  margin-left: 15%;
+  margin-top: 5%;
 }
-.table-responsive{
-    max-width: 100%;
-    overflow-x: auto;
+.white-h1 {
+  color: white;
+  text-align: center;
+}
+.table-responsive {
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .button-25 {
-  background-color: #36A9AE;
-  background-image: linear-gradient(#37ADB2, #329CA0);
-  border: 1px solid #2A8387;
+  background-color: #36a9ae;
+  background-image: linear-gradient(#37adb2, #329ca0);
+  border: 1px solid #2a8387;
   border-radius: 4px;
   box-shadow: rgba(0, 0, 0, 0.12) 0 1px 1px;
-  color: #FFFFFF;
+  color: #ffffff;
   cursor: pointer;
   display: block;
-  font-family: -apple-system,".SFNSDisplay-Regular","Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: -apple-system, ".SFNSDisplay-Regular", "Helvetica Neue",
+    Helvetica, Arial, sans-serif;
   font-size: 17px;
   line-height: 100%;
   margin: 0;
   outline: 0;
   padding: 11px 15px 12px;
   text-align: center;
-  transition: box-shadow .05s ease-in-out,opacity .05s ease-in-out;
+  transition: box-shadow 0.05s ease-in-out, opacity 0.05s ease-in-out;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -57,7 +56,8 @@ tr {
 }
 
 .button-25:hover {
-  box-shadow: rgba(255, 255, 255, 0.3) 0 0 2px inset, rgba(0, 0, 0, 0.4) 0 1px 2px;
+  box-shadow: rgba(255, 255, 255, 0.3) 0 0 2px inset,
+    rgba(0, 0, 0, 0.4) 0 1px 2px;
   text-decoration: none;
-  transition-duration: .15s, .15s;
+  transition-duration: 0.15s, 0.15s;
 }

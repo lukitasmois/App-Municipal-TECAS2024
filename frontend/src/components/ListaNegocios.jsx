@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const handleHabilitar = async (id) => {
   try {
@@ -20,12 +20,12 @@ const ListaNegocios = ({ business }) => {
   const navigate = useNavigate();
   return (
     <tr>
-      <td>{business._id}</td>
-      <td>{business.calle}</td>
-      <td>{business.ciudad}</td>
-      <td>{business.altura}</td>
-      <td>{business.rubro}</td>
-      <td>
+      <td className="celda-negocio">{business._id}</td>
+      <td className="celda-negocio">{business.calle}</td>
+      <td className="celda-negocio">{business.ciudad}</td>
+      <td className="celda-negocio">{business.altura}</td>
+      <td className="celda-negocio">{business.rubro}</td>
+      <td className="celda-negocio">
         <button
           onClick={() => handleHabilitar(business._id)}
           className="button-25"
@@ -33,11 +33,13 @@ const ListaNegocios = ({ business }) => {
           Habilitar
         </button>
       </td>
-      <td>
+      <td className="celda-negocio">
         <button
           onClick={() => navigate(`/vernegocio/${business._id}`)}
-          className="button-25" >
-          Ver</button>
+          className="button-25"
+        >
+          Ver
+        </button>
       </td>
     </tr>
   );

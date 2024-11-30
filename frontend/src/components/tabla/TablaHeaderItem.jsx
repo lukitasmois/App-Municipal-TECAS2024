@@ -1,7 +1,3 @@
 export function TableHeaderItem(props) {
-    return (
-        <th>
-          {props.columnName}
-        </th>
-      );
+  return <th className="celda-negocio">{props.columnName}</th>;
 }

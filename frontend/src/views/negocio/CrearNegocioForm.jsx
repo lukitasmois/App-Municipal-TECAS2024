@@ -46,115 +46,123 @@ function CrearNegocioForm({usuarioLogeado}) {
         }
     }
 
-return (
-    <form onSubmit={handleSubmit(onSubmit)} className="form-container">
-        <div className="form-group">
-            <label htmlFor="calle">Calle</label>
-            <input
-                type="text"
-                id="calle"
-                {...register("calle", {
-                    required: {
-                        value: true,
-                        message: "La calle es requerida"
-                    },
-                    validate: value => {
-                        const num = parseFloat(value);
-                        if (!isNaN(num) && num < 1) {
-                            return "No es una calle valida";
+    return (
+        <form onSubmit={handleSubmit(onSubmit)} className="container mt-4">
+            <div className="mb-3">
+                <label htmlFor="calle" className="form-label">Calle</label>
+                <input
+                    type="text"
+                    id="calle"
+                    className="form-control"
+                    {...register("calle", {
+                        required: {
+                            value: true,
+                            message: "La calle es requerida"
+                        },
+                        validate: value => {
+                            const num = parseFloat(value);
+                            if (!isNaN(num) && num < 1) {
+                                return "No es una calle valida";
+                            }
+                            return true;
                         }
-                        return true;
-                    }
-                })}
-            />
-            {errors.calle && <span className="text-red-500">{errors.calle.message}</span>}
-        </div>
-
-        <div className="form-group">
-            <label htmlFor="altura">Altura</label>
-            <input
-                type="number"
-                id="altura"
-                {...register("altura", {
+                    })}
+                />
+                {errors.calle && <div className="text-danger">{errors.calle.message}</div>}
+            </div>
+    
+            <div className="mb-3">
+                <label htmlFor="altura" className="form-label">Altura</label>
+                <input
+                    type="number"
+                    id="altura"
+                    className="form-control"
+                    {...register("altura", {
+                        required: {
+                            value: true,
+                            message: "La altura es requerida"
+                        },
+                        min: {
+                            value: 1,
+                            message: "No es una altura valida"
+                        }
+                    })}
+                />
+                {errors.altura && <div className="text-danger">{errors.altura.message}</div>}
+            </div>
+    
+            <div className="mb-3">
+                <label htmlFor="ciudad" className="form-label">Ciudad</label>
+                <select
+                    id="ciudad"
+                    className="form-select"
+                    {...register("ciudad", {
+                        required: {
+                            value: true,
+                            message: "La ciudad es requerida"
+                        },
+                        validate: value => value !== "" || "La ciudad es requerida"
+                    })}
+                >
+                    <option value="">Seleccione una ciudad</option>
+                    {CIUDADES.map((ciudad, index) => (
+                        <option key={index} value={ciudad}>{ciudad}</option>
+                    ))}
+                </select>
+                {errors.ciudad && <div className="text-danger">{errors.ciudad.message}</div>}
+            </div>
+    
+            <div className="mb-3">
+                <label htmlFor="rubro" className="form-label">Rubro</label>
+                <select id="rubro" className="form-select" {...register("rubro", {
                     required: {
                         value: true,
-                        message: "La altura es requerida"
-                    },
-                    min: {
-                        value: 1,
-                        message: "No es una altura valida"
+                        message: "El rubro es requerido"
                     }
-                })}
-            />
-            {errors.altura && <span className="text-red-500">{errors.altura.message}</span>}
-        </div>
-
-        <div className="form-group">
-            <label htmlFor="ciudad">Ciudad</label>
-            <select
-                id="ciudad"
-                {...register("ciudad", {
-                    required: {
-                        value: true,
-                        message: "La ciudad es requerida"
-                    },
-                    validate: value => value !== "" || "La ciudad es requerida"
-                })}
-            >
-                <option value="">Seleccione una ciudad</option>
-                {CIUDADES.map((ciudad, index) => (
-                    <option key={index} value={ciudad}>{ciudad}</option>
-                ))}
-            </select>
-            {errors.ciudad && <span className="text-red-500">{errors.ciudad.message}</span>}
-        </div>
-
-        <div className="form-group">
-            <label htmlFor="rubro">Rubro</label>
-            <select id="rubro" {...register("rubro", {
-                required: {
-                    value: true,
-                    message: "El rubro es requerido"
-                }
-            })}>
-                <option value="">Seleccione un rubro</option>
-                {RUBROS.map((rubro, index) => (
-                    <option key={index} value={rubro}>{rubro}</option>
-                ))}
-            </select>
-            {errors.rubro && <span className="text-red-500">{errors.rubro.message}</span>}
-        </div>
-
-        <div className="form-group">
-        <label>Titulo de propiedad</label>
-        <input 
-            type="file"
-            {...register("titulo", {
-                required:{
-                    value: true,
-                    message: "No se selecciono el titulo de propiedad"
-                }
-            })}
-        />
-        {errors.titulo && <span>{errors.titulo.message}</span>}
-        </div>
-
-        <div className="form-group">
-        <label>Plano de Edificacion</label>
-        <input 
-            type="file"
-            {...register("plano", {
-                required:{
-                    value: true,
-                    message: "No se selecciono el plano de edificacion"
-                }
-            })}
-        />
-        {errors.plano && <span>{errors.plano.message}</span>}
-        </div>
-        <button type="submit">Enviar</button>
-    </form>
-);
+                })}>
+                    <option value="">Seleccione un rubro</option>
+                    {RUBROS.map((rubro, index) => (
+                        <option key={index} value={rubro}>{rubro}</option>
+                    ))}
+                </select>
+                {errors.rubro && <div className="text-danger">{errors.rubro.message}</div>}
+            </div>
+    
+            <div className="mb-3">
+                <label htmlFor="titulo" className="form-label">Titulo de propiedad</label>
+                <input 
+                    type="file"
+                    id="titulo"
+                    className="form-control"
+                    {...register("titulo", {
+                        required:{
+                            value: true,
+                            message: "No se selecciono el titulo de propiedad"
+                        }
+                    })}
+                />
+                {errors.titulo && <div className="text-danger">{errors.titulo.message}</div>}
+            </div>
+    
+            <div className="mb-3">
+                <label htmlFor="plano" className="form-label">Plano de Edificacion</label>
+                <input 
+                    type="file"
+                    id="plano"
+                    className="form-control"
+                    {...register("plano", {
+                        required:{
+                            value: true,
+                            message: "No se selecciono el plano de edificacion"
+                        }
+                    })}
+                />
+                {errors.plano && <div className="text-danger">{errors.plano.message}</div>}
+            </div>
+    
+            <button type="submit" className="btn btn-primary">Enviar</button>
+        </form>
+    );
     
 }
 

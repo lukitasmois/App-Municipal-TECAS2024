@@ -1,0 +1,155 @@
+{
+    "nombreFormulario": "Formulario F6",
+    "campos": [
+        {
+            "tipo": "text",
+            "etiqueta": "Nombre y Apellido o razón social",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "number",
+            "etiqueta": "CUIT",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "text",
+            "etiqueta": "Calle del domicilio",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "number",
+            "etiqueta": "N° de domicilio",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "number",
+            "etiqueta": "Codigo postal",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "select",
+            "etiqueta": "Ciudad del domicilio",
+            "requerido": true,
+            "opciones": [
+                "Azul",
+                "Cachari",
+                "Chillar",
+                "Olavarria",
+                "Tapalque"
+            ]
+        },
+        {
+            "tipo": "text",
+            "etiqueta": "Localidad",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "number",
+            "etiqueta": "Teléfono",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "text",
+            "etiqueta": "Nombre del establecimiento",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "text",
+            "etiqueta": "Fecha de inicio",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "text",
+            "etiqueta": "Actividad principal",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "number",
+            "etiqueta": "Cod. II. BB.",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "text",
+            "etiqueta": "Actividad secundaria",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "number",
+            "etiqueta": "Cod. II. BB.",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "checkbox",
+            "etiqueta": "Dispone establecimiento de producción, depósito o atención al público",
+            "requerido": true,
+            "valor": false
+        },
+        {
+            "tipo":"checkbox",
+            "etiqueta":"Afecta a la actividad vehículos para transporte de personas o alimentos",
+            "requerido":true,
+            "valor":false
+        },
+        {
+            "tipo": "text",
+            "etiqueta": "Domicilio del establecimiento",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "number",
+            "etiqueta": "N° de domicilio",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "text",
+            "etiqueta": "Localidad",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "text",
+            "etiqueta": "Partido",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "number",
+            "etiqueta": "Codigo postal",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "number",
+            "etiqueta": "Teléfono",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "email",
+            "etiqueta": "Mail",
+            "requerido": true,
+            "valor": ""
+        },
+        {
+            "tipo": "checkbox",
+            "etiqueta": "Términos y condiciones",
+            "requerido": true,
+            "valor": false
+        }
+    ]
+}

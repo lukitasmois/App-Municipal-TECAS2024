@@ -19,6 +19,8 @@ import VerFormulario from "./views/formulario/VerFormulario.jsx";
 import EditarFormulario from "./views/formulario/EditarFormulario.jsx";
 import VerUsuario from "./views/usuario/VerUsuario.jsx";
 
+import PreguntasFrecuentes from "./views/usuario/Preguntas Frecuentes/main.jsx";
+
 function App() {
   return (
     <>
@@ -50,6 +52,9 @@ function App() {
           element={<EditarFormulario />}
         />
         <Route path="/ver-usuario/:id" element={<VerUsuario />}></Route>
+        <Route
+          path="/preguntas-frecuentes"
+          element={<PreguntasFrecuentes />}></Route>
       </Routes>
       <ToastContainer />
       <Toaster />

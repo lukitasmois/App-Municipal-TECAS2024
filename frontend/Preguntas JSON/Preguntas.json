@@ -1,0 +1,45 @@
+{
+    "preguntas": [
+        {
+            "titulo": "¿Qué es una habilitación digital?",
+            "descripcion": "Una habilitación digital es un proceso mediante el cual una persona o entidad obtiene la autorización o licencia para realizar actividades en línea, como el ejercicio profesional, trámites administrativos, o el uso de plataformas digitales, a través de un sistema digitalizado."
+          },
+          {
+            "titulo": "¿Cómo se realiza una habilitación digital?",
+            "descripcion": "Para realizar una habilitación digital, generalmente se debe acceder a una plataforma en línea proporcionada por la autoridad correspondiente, completar los formularios requeridos, adjuntar los documentos necesarios y realizar el pago de tarifas o tasas correspondientes, todo a través de internet."
+          },
+          {
+            "titulo": "¿Qué documentos necesito para obtener una habilitación digital?",
+            "descripcion": "Los documentos necesarios pueden variar según el tipo de habilitación digital, pero generalmente incluyen identificación personal, comprobantes de formación o experiencia profesional, y en algunos casos, pruebas de competencia o exámenes digitales, dependiendo de la autoridad que emite la habilitación."
+          },
+          {
+            "titulo": "¿Es obligatorio tener una firma electrónica para una habilitación digital?",
+            "descripcion": "Sí, en muchos casos, se requiere una firma electrónica válida para autenticar las solicitudes y documentos en el proceso de habilitación digital. Esto garantiza la validez legal de los trámites realizados de manera digital."
+          },
+          {
+            "titulo": "¿Cuánto tiempo tarda en procesarse una habilitación digital?",
+            "descripcion": "El tiempo para procesar una habilitación digital varía según el tipo de habilitación y la plataforma utilizada. Puede tardar desde unos pocos días hasta varias semanas, dependiendo de la carga de trabajo de las autoridades y la complejidad del trámite."
+          },
+          {
+            "titulo": "¿Es posible realizar una habilitación digital de forma urgente?",
+            "descripcion": "Algunas plataformas ofrecen un proceso de habilitación digital urgente, donde el trámite se acelera por un costo adicional o mediante el cumplimiento de ciertos requisitos. Es importante verificar si esta opción está disponible en la plataforma correspondiente."
+          },
+          {
+            "titulo": "¿Puedo realizar mi habilitación digital desde cualquier lugar?",
+            "descripcion": "Sí, una de las ventajas de las habilitaciones digitales es que se pueden realizar desde cualquier lugar con acceso a internet, sin necesidad de acudir físicamente a una oficina o entidad gubernamental."
+          },
+          {
+            "titulo": "¿Cómo aseguro la validez legal de mi habilitación digital?",
+            "descripcion": "La validez legal de una habilitación digital se asegura a través de la autenticación en la plataforma oficial, el uso de firmas electrónicas y el cumplimiento de todos los requisitos establecidos por la autoridad emisora de la habilitación."
+          },
+          {
+            "titulo": "¿Puedo actualizar o renovar mi habilitación digital en línea?",
+            "descripcion": "Sí, en la mayoría de los casos, las habilitaciones digitales pueden ser actualizadas o renovadas en línea mediante el mismo proceso digital, donde se completan los requisitos adicionales como la formación continua o la actualización de datos."
+          },
+          {
+            "titulo": "¿Qué hacer si tengo problemas al realizar mi habilitación digital?",
+            "descripcion": "Si encuentras problemas durante el proceso de habilitación digital, puedes contactar al soporte técnico de la plataforma, revisar las titulos frecuentes, o consultar con las autoridades encargadas del trámite para obtener asistencia."
+          }
+
+    ]
+}

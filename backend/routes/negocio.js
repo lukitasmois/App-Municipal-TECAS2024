@@ -11,7 +11,7 @@ const uploadFile = multer({ storage: multer.memoryStorage() });
 const {
   authMiddleware,
   authIsHabilited,
-} = require("../middlewares/auth_middleware");
+} = require("../middleware/auth_middleware");
 const {
   crearNegocio,
   verNegocio,

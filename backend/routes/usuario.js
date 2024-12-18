@@ -28,7 +28,7 @@ const {
 const {
   authMiddleware,
   authIsHabilited,
-} = require("../middlewares/auth_middleware.js");
+} = require("../middleware/auth_middleware.js");
 
 const multer = require("multer");
 
